@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Combos Mayoristas y Packs de Obra | El Ferretero</title>
+  <meta name="description" content="Kits armados, combos para electricistas, albañiles, pintores y cajas cerradas con precios mayoristas en Río Cuarto.">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER (DOBLE BARRA) ==================== -->
+  <header>
+    <div class="wrap top-bar">
+      <a class="logo" href="index.html" aria-label="Ir al inicio de El Ferretero">
+        EL <b>FERRETERO</b>
+        <span class="logo-badge">Río Cuarto</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Principal">
+        <a href="index.html">Inicio</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+            Productos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="mantenimiento-limpieza.html">Mantenimiento y Limpieza</a>
+            <a href="electricidad.html">Electricidad</a>
+            <a href="libros-ebook.html">Libros / E-Book</a>
+            <a href="herramienta-seguridad.html">Herramienta Seguridad</a>
+            <a href="mayorista-combos.html">Mayorista Combos</a>
+            <a href="productos.html" class="dropdown-divider">Ver todos los productos →</a>
+          </div>
+        </div>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Cambiar tema" title="Modo Claro / Oscuro">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="cart-toggle-btn" data-open-cart aria-label="Ver lista de materiales">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span>Pedido</span>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+        <a class="btn btn-sm btn-header-wa" href="https://wa.me/5493580000000?text=Hola!%20Quiero%20consultar%20por%20Combos%20Mayoristas" target="_blank" rel="noopener noreferrer" data-wa>WhatsApp</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú de navegación">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sub-barra con MAYORISTA COMBOS activo -->
+    <div class="category-nav-bar">
+      <div class="wrap category-nav-container">
+        <a href="mantenimiento-limpieza.html" class="category-nav-item">MANTENIMIENTO Y LIMPIEZA DEL HOGAR</a>
+        <a href="electricidad.html" class="category-nav-item">ELECTRICIDAD</a>
+        <a href="libros-ebook.html" class="category-nav-item">LIBROS / E-BOOK</a>
+        <a href="herramienta-seguridad.html" class="category-nav-item">HERRAMIENTA SEGURIDAD</a>
+        <a href="mayorista-combos.html" class="category-nav-item active">MAYORISTA COMBOS</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== CONTENIDO ==================== -->
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <h2>Combos Mayoristas y Packs Especiales</h2>
+            <p>Ahorrá llevando kits armados y paquetes por volumen para obras, contratistas, talleres y profesionales independientes.</p>
+          </div>
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="catalogSearch" placeholder="Buscar combos, kits...">
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- Combo Dúo Power -->
+          <article class="promo" data-id="combo-duo-power">
+            <span class="tag">-19%</span>
+            <div class="ph">
+              <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23202020%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2220%22%20width%3D%22360%22%20height%3D%22260%22%20rx%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23333333%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%228%208%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F5A000%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.9%22%3E%3Cpath%20d%3D%22M222%20108a34%2034%200%200%200-46%2046l-58%2058%2022%2022%2058-58a34%2034%200%200%200%2046-46l-22%2022-20-6-6-20z%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22200%22%20y%3D%22245%22%20fill%3D%22%23888888%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22bold%22%20font-size%3D%2214%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EEL%20FERRETERO%20%C2%B7%20R%C3%8DO%20CUARTO%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Combo Dúo Power" loading="lazy">
+            </div>
+            <div class="body">
+              <div class="body-header"><span class="category-tag">Combo Taller</span></div>
+              <h3>Combo Dúo: Taladro + Amoladora</h3>
+              <p class="desc">Kit profesional completo: Taladro percutor 650W + Amoladora 850W con maletín y 10 discos de corte de regalo.</p>
+              <div class="price"><b>$109.900</b><s>$135.000</s></div>
+              <div class="card-actions">
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-duo-power">Sumar al pedido</button>
+                <a class="btn-wa-single" href="https://wa.me/5493580000000?text=Hola!%20Quiero%20consultar%20por%20Combo%20Duo" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Combo Albañilería -->
+          <article class="promo" data-id="combo-albanileria">
+            <span class="tag">Pack Obra</span>
+            <div class="ph">
+              <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23202020%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2220%22%20width%3D%22360%22%20height%3D%22260%22%20rx%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23333333%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%228%208%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F5A000%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.9%22%3E%3Cpath%20d%3D%22M222%20108a34%2034%200%200%200-46%2046l-58%2058%2022%2022%2058-58a34%2034%200%200%200%2046-46l-22%2022-20-6-6-20z%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22200%22%20y%3D%22245%22%20fill%3D%22%23888888%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22bold%22%20font-size%3D%2214%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EEL%20FERRETERO%20%C2%B7%20R%C3%8DO%20CUARTO%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Combo Obra Albañilería" loading="lazy">
+            </div>
+            <div class="body">
+              <div class="body-header"><span class="category-tag">Combo Construcción</span></div>
+              <h3>Combo Obra: Carretilla + Cuchara + Nivel + 3 Baldes</h3>
+              <p class="desc">Carretilla chapa reforzada 80L + cuchara de albañil forjada + nivel de mano + 3 baldes reforzados.</p>
+              <div class="price"><b>$78.000</b><s>$94.000</s></div>
+              <div class="card-actions">
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-albanileria">Sumar al pedido</button>
+                <a class="btn-wa-single" href="https://wa.me/5493580000000?text=Hola!%20Quiero%20consultar%20por%20Combo%20Albañileria" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pack Discos Corte -->
+          <article class="promo" data-id="pack-discos-corte">
+            <span class="tag">Mayorista</span>
+            <div class="ph">
+              <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23202020%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2220%22%20width%3D%22360%22%20height%3D%22260%22%20rx%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23333333%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%228%208%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F5A000%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.9%22%3E%3Cpath%20d%3D%22M222%20108a34%2034%200%200%200-46%2046l-58%2058%2022%2022%2058-58a34%2034%200%200%200%2046-46l-22%2022-20-6-6-20z%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22200%22%20y%3D%22245%22%20fill%3D%22%23888888%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22bold%22%20font-size%3D%2214%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EEL%20FERRETERO%20%C2%B7%20R%C3%8DO%20CUARTO%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Pack Discos de Corte" loading="lazy">
+            </div>
+            <div class="body">
+              <div class="body-header"><span class="category-tag">Caja Cerrada</span></div>
+              <h3>Pack Mayorista Discos de Corte 115mm x 50u</h3>
+              <p class="desc">Caja cerrada de 50 discos de corte ultrafinos 1mm para amoladora angular de 4 1/2\". Máxima durabilidad.</p>
+              <div class="price"><b>$32.000</b><s>$41.000</s></div>
+              <div class="card-actions">
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="pack-discos-corte">Sumar al pedido</button>
+                <a class="btn-wa-single" href="https://wa.me/5493580000000?text=Hola!%20Quiero%20consultar%20por%20Pack%20Discos" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Combo Electricista Pro -->
+          <article class="promo" data-id="combo-electricista">
+            <span class="tag">-20%</span>
+            <div class="ph">
+              <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23202020%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2220%22%20width%3D%22360%22%20height%3D%22260%22%20rx%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23333333%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%228%208%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F5A000%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.9%22%3E%3Cpath%20d%3D%22M222%20108a34%2034%200%200%200-46%2046l-58%2058%2022%2022%2058-58a34%2034%200%200%200%2046-46l-22%2022-20-6-6-20z%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22200%22%20y%3D%22245%22%20fill%3D%22%23888888%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22bold%22%20font-size%3D%2214%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EEL%20FERRETERO%20%C2%B7%20R%C3%8DO%20CUARTO%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Combo Electricista Pro" loading="lazy">
+            </div>
+            <div class="body">
+              <div class="body-header"><span class="category-tag">Combo Instalador</span></div>
+              <h3>Combo Electricista: Pasacable + Pinza + Pelacables</h3>
+              <p class="desc">Cinta pasacable de acero 20m + Pinza universal aislada 1000V + Pelacables automático + Buscapolo digital.</p>
+              <div class="price"><b>$49.900</b><s>$62.000</s></div>
+              <div class="card-actions">
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-electricista">Sumar al pedido</button>
+                <a class="btn-wa-single" href="https://wa.me/5493580000000?text=Hola!%20Quiero%20consultar%20por%20Combo%20Electricista" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div><b>EL FERRETERO</b><br>Tu ferretero de confianza · Río Cuarto, Córdoba</div>
+      <div class="footer-badges"><span>Precios especiales para profesionales y comercios</span></div>
+    </div>
+  </footer>
+
+  <!-- Drawer de carrito -->
+  <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras">
+    <div class="cart-header">
+      <h3>Lista de Pedido</h3>
+      <button class="btn-close-cart" id="closeCartBtn">✕</button>
+    </div>
+    <div class="cart-items" id="cartItemsList"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row"><span>Total estimado:</span><strong id="cartTotalAmount">$0</strong></div>
+      <button class="btn btn-full" id="cartCheckoutWa">Enviar pedido por WhatsApp</button>
+    </div>
+  </aside>
+
+  <!-- Botón WhatsApp -->
+  <a class="wa" href="https://wa.me/5493580000000?text=Hola!%20Quiero%20consultar%20por%20Combos%20Mayoristas" target="_blank" rel="noopener noreferrer" data-wa aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+  </a>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
