@@ -1,43 +1,148 @@
-/* Responsive Rules */
+/* ==========================================================================
+   Responsive & Mobile Ergonomics (iOS, Android & Tablets)
+   ========================================================================== */
 
-@media (max-width: 992px) {
-  .hero .wrap {
-    grid-template-columns: 1.2fr 1fr;
-    gap: 30px;
-  }
-
-  .visit .wrap {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
+/* 1. Soporte de Safe Area Insets (Notch de iPhone, Isla Dinámica y Barra de Gestos) */
+header {
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
-@media (max-width: 768px) {
-  :root {
-    --header-height: 64px;
+.cart-drawer {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.cart-footer {
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+}
+
+.wa {
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  right: calc(20px + env(safe-area-inset-right, 0px));
+}
+
+/* ==========================================================================
+   2. TABLETS (768px a 1024px - iPad, iPad Mini, Galaxy Tab)
+   ========================================================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .wrap {
+    padding: 0 24px;
   }
 
-  /* Navigation on mobile */
-  .mobile-nav-toggle {
-    display: flex;
+  .top-bar {
+    height: 68px;
+  }
+
+  .logo {
+    font-size: 1.7rem;
   }
 
   nav.nav-links {
+    gap: 16px;
+  }
+
+  nav.nav-links > a,
+  .nav-dropdown-toggle {
+    font-size: 0.95rem;
+  }
+
+  .hero .wrap {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+  }
+
+  .cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .category-nav-item {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  .visit .wrap {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+/* ==========================================================================
+   3. MÓVILES Y PANTALLAS TÁCTILES (< 768px - iPhone, Android)
+   ========================================================================== */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 60px;
+  }
+
+  /* Header compacto */
+  .top-bar {
+    height: var(--header-height);
+    padding: 0;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .logo-badge {
+    display: none; /* Ocultar badge secundario para dar espacio en teléfonos */
+  }
+
+  /* Botón hamburguesa visible y táctil */
+  .mobile-nav-toggle {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    color: #141414;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  .mobile-nav-toggle:active {
+    background: rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+  }
+
+  /* Menú desplegable móvil */
+  nav.nav-links {
     position: fixed;
-    top: var(--header-height);
+    top: calc(var(--header-height) + env(safe-area-inset-top, 0px));
     left: 0;
     right: 0;
-    background: var(--header-bg);
+    background: #FFFFFF;
+    color: #141414;
     flex-direction: column;
-    padding: 24px 20px;
-    gap: 18px;
-    border-bottom: 2px solid var(--orange);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    padding: 20px 24px;
+    gap: 14px;
+    border-bottom: 4px solid var(--orange);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
     transform: translateY(-120%);
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-    z-index: 99;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+    z-index: 150;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  [data-theme="dark"] nav.nav-links {
+    background: #1c1c1c;
+    color: #F2F1ED;
   }
 
   nav.nav-links.open {
@@ -46,26 +151,79 @@
     pointer-events: auto;
   }
 
-  nav.nav-links a {
+  nav.nav-links > a,
+  .nav-dropdown-toggle {
     font-size: 1.15rem;
-    font-family: var(--head);
     font-weight: 700;
     width: 100%;
-    text-align: left;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    justify-content: space-between;
+  }
+
+  .dropdown-menu {
+    position: static;
+    transform: none !important;
+    box-shadow: none;
+    border: none;
+    background: var(--bg-alt);
+    margin: 8px 0;
     padding: 6px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    display: none;
+    opacity: 1;
+    pointer-events: auto;
   }
 
-  .header-actions .btn {
-    display: none; /* In header, shown in mobile nav instead */
+  .nav-dropdown.open .dropdown-menu {
+    display: block;
   }
 
-  /* Hero Section */
+  .dropdown-menu a {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+
+  /* Ocultar botón de texto de WhatsApp en la barra superior móvil (ya existe el flotante táctil) */
+  .btn-header-wa {
+    display: none;
+  }
+
+  /* Sub-barra de categorías móvil con deslizamiento táctil horizontal */
+  .category-nav-bar {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    position: relative;
+  }
+
+  .category-nav-container {
+    padding: 0 16px;
+    gap: 8px;
+    min-height: 44px;
+    justify-content: flex-start;
+  }
+
+  .category-nav-item {
+    font-size: 0.88rem;
+    padding: 10px 14px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    touch-action: manipulation;
+  }
+
+  .category-nav-item:active {
+    opacity: 0.7;
+    transform: scale(0.97);
+  }
+
+  /* Hero Section en móviles */
   .hero::after {
     width: 100%;
     right: 0;
     top: auto;
-    height: 75px;
+    height: 70px;
     transform: none;
     bottom: 0;
   }
@@ -73,12 +231,33 @@
   .hero .wrap {
     grid-template-columns: 1fr;
     min-height: auto;
-    padding-top: 40px;
-    padding-bottom: 90px;
+    padding-top: 35px;
+    padding-bottom: 85px;
+    gap: 24px;
   }
 
   .hero-content h1 {
-    font-size: clamp(2.8rem, 11vw, 4rem);
+    font-size: clamp(2.6rem, 11vw, 3.8rem);
+    line-height: 1;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+    margin: 16px 0 24px;
+  }
+
+  .hero .cta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero .cta .btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.8em 1.2em;
+    font-size: 1.15rem;
   }
 
   .hero-visual {
@@ -86,76 +265,163 @@
   }
 
   .badge {
-    justify-self: start;
-    padding: 18px 24px;
+    padding: 16px 20px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
   }
 
   .badge strong {
     font-size: 2.2rem;
   }
 
-  /* Catalog controls */
-  .catalog-controls {
-    align-items: stretch;
+  /* Grilla de productos */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .promo .body {
+    padding: 16px;
+  }
+
+  .promo .card-actions {
+    grid-template-columns: 1fr 48px;
+    gap: 10px;
+  }
+
+  .promo .btn-add-cart {
+    padding: 0.65em 0.8em;
+    font-size: 1.05rem;
+    min-height: 46px; /* Área táctil óptima iOS/Android */
+  }
+
+  .promo .btn-wa-single {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Categorías / Rubros */
+  .cat-grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .cat {
+    padding: 22px 18px;
+  }
+
+  /* Visítanos y Mapa */
+  .visit .wrap {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .map-card {
+    padding: 22px 18px;
+  }
+
+  .map-embed-wrapper {
+    height: 200px;
+  }
+
+  /* Drawer del carrito a pantalla completa en smartphones */
+  .cart-drawer {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cart-item {
+    gap: 10px;
+  }
+
+  .quantity-control {
+    min-height: 36px;
+  }
+
+  .btn-qty {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+    touch-action: manipulation;
+  }
+
+  .qty-val {
+    min-width: 32px;
+    font-size: 1rem;
+  }
+
+  .btn-remove-item {
+    padding: 6px 0;
+    font-size: 0.88rem;
+  }
+
+  /* Botón flotante de WhatsApp */
+  .wa {
+    width: 58px;
+    height: 58px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .wa:active {
+    transform: scale(0.92);
+  }
+
+  .wa svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Secciones */
+  section {
+    padding: 50px 0;
+  }
+
+  .head {
+    margin-bottom: 20px;
+  }
+
+  .head h2 {
+    font-size: 2.2rem;
   }
 
   .search-box {
     max-width: 100%;
   }
 
-  /* Cart Drawer */
-  .cart-drawer {
-    max-width: 100%;
+  .search-box input {
+    font-size: 16px; /* Garantiza no auto-zoom en iOS Safari */
+    padding: 12px 16px 12px 42px;
   }
 
-  /* Section padding */
-  section {
-    padding: 60px 0;
-  }
-
-  .head {
-    margin-bottom: 24px;
-  }
-
-  .map-card {
-    padding: 24px;
+  /* Footer móvil */
+  footer {
+    padding: 30px 0 calc(30px + env(safe-area-inset-bottom, 0px));
   }
 
   footer .wrap {
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
+    gap: 16px;
   }
 }
 
-@media (max-width: 480px) {
-  .hero .cta {
-    flex-direction: column;
-    width: 100%;
+/* ==========================================================================
+   4. TELÉFONOS COMPACTOS (< 380px - iPhone SE, Android pequeños)
+   ========================================================================== */
+@media (max-width: 380px) {
+  .logo {
+    font-size: 1.45rem;
   }
 
-  .hero .cta .btn {
-    width: 100%;
-    text-align: center;
+  .cart-toggle-btn {
+    padding: 0.4em 0.65em;
+    font-size: 0.95rem;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .hero-content h1 {
+    font-size: 2.3rem;
   }
 
-  .cat-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wa {
-    right: 16px;
-    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-    width: 52px;
-    height: 52px;
-  }
-
-  .wa svg {
-    width: 28px;
-    height: 28px;
+  .badge strong {
+    font-size: 1.9rem;
   }
 }

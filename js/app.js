@@ -290,15 +290,23 @@
       }
     });
 
-    // Marcar activo en la sub-barra de categorías
+    // Marcar activo en la sub-barra de categorías y centrar en móviles/tablets
+    let activeCategoryItem = null;
     document.querySelectorAll('.category-nav-item').forEach(item => {
       const href = item.getAttribute('href');
       if (href === currentPath) {
         item.classList.add('active');
+        activeCategoryItem = item;
       } else {
         item.classList.remove('active');
       }
     });
+
+    if (activeCategoryItem) {
+      setTimeout(() => {
+        activeCategoryItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }, 120);
+    }
 
     // Dropdown toggle click en dispositivos táctiles / mobile
     const dropdown = document.querySelector('.nav-dropdown');
@@ -316,12 +324,25 @@
       });
     }
 
-    // Menú mobile
+    // Menú mobile con autocierre al tocar enlaces o pulsar fuera
     const mobileToggle = document.getElementById('mobileNavToggle');
     const navLinks = document.getElementById('navLinks');
     if (mobileToggle && navLinks) {
-      mobileToggle.addEventListener('click', () => {
+      mobileToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         navLinks.classList.toggle('open');
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && e.target !== mobileToggle) {
+          navLinks.classList.remove('open');
+        }
       });
     }
   }
