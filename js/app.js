@@ -324,24 +324,64 @@
       });
     }
 
-    // Menú mobile con autocierre al tocar enlaces o pulsar fuera
+    // Menú mobile tipo drawer con backdrop y botón de cierre táctil
     const mobileToggle = document.getElementById('mobileNavToggle');
     const navLinks = document.getElementById('navLinks');
+    
+    // Crear backdrop si no existe
+    let navBackdrop = document.getElementById('mobileNavBackdrop');
+    if (!navBackdrop) {
+      navBackdrop = document.createElement('div');
+      navBackdrop.id = 'mobileNavBackdrop';
+      navBackdrop.className = 'mobile-nav-backdrop';
+      document.body.appendChild(navBackdrop);
+    }
+
     if (mobileToggle && navLinks) {
+      // Inyectar cabecera del drawer móvil si no existe
+      if (!navLinks.querySelector('.mobile-drawer-header')) {
+        const drawerHeader = document.createElement('div');
+        drawerHeader.className = 'mobile-drawer-header';
+        drawerHeader.innerHTML = `
+          <span>EL <b>FERRETERO</b></span>
+          <button class="btn-close-drawer" type="button" aria-label="Cerrar menú">✕</button>
+        `;
+        navLinks.prepend(drawerHeader);
+        drawerHeader.querySelector('.btn-close-drawer').addEventListener('click', closeMobileNav);
+      }
+
+      function openMobileNav() {
+        navLinks.classList.add('open');
+        navBackdrop.classList.add('open');
+        mobileToggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileNav() {
+        navLinks.classList.remove('open');
+        navBackdrop.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
       mobileToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        navLinks.classList.toggle('open');
+        if (navLinks.classList.contains('open')) {
+          closeMobileNav();
+        } else {
+          openMobileNav();
+        }
       });
+
+      navBackdrop.addEventListener('click', closeMobileNav);
 
       navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('open');
-        });
+        link.addEventListener('click', closeMobileNav);
       });
 
-      document.addEventListener('click', (e) => {
-        if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && e.target !== mobileToggle) {
-          navLinks.classList.remove('open');
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+          closeMobileNav();
         }
       });
     }

@@ -296,21 +296,29 @@ nav.nav-links > a.active::after {
   color: var(--orange);
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Menu Toggle & Elements */
 .mobile-nav-toggle {
   display: none;
   width: 40px;
   height: 40px;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #141414;
+  border: 1px solid rgba(20, 20, 20, 0.2);
   border-radius: var(--radius-sm);
 }
 
 .mobile-nav-toggle svg {
   width: 24px;
   height: 24px;
+}
+
+.mobile-drawer-header {
+  display: none;
+}
+
+.mobile-nav-backdrop {
+  display: none;
 }
 
 /* ==========================================================================

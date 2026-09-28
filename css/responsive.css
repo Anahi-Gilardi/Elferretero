@@ -84,26 +84,43 @@ header {
     --header-height: 60px;
   }
 
-  /* Header compacto */
+  /* Header compacto con espacio lateral para que el logo no quede pegado al borde */
   .top-bar {
     height: var(--header-height);
-    padding: 0;
+    padding: 0 16px;
+    gap: 8px;
   }
 
   .logo {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
+    white-space: nowrap;
   }
 
   .logo-badge {
     display: none; /* Ocultar badge secundario para dar espacio en teléfonos */
   }
 
+  /* Compactar el botón del carrito en celulares: ocultar texto "Pedido" y dejar solo el icono + badge */
+  .cart-toggle-btn {
+    padding: 8px 10px;
+    min-width: 44px;
+    justify-content: center;
+  }
+
+  .cart-toggle-btn span:not(.cart-badge) {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
   /* Botón hamburguesa visible y táctil */
   .mobile-nav-toggle {
     display: flex;
-    width: 44px;
-    height: 44px;
-    background: rgba(0, 0, 0, 0.1);
+    width: 42px;
+    height: 42px;
+    background: rgba(0, 0, 0, 0.12);
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: var(--radius-sm);
     color: #141414;
@@ -113,76 +130,187 @@ header {
   }
 
   .mobile-nav-toggle:active {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.25);
     transform: scale(0.95);
   }
 
-  /* Menú desplegable móvil */
-  nav.nav-links {
+  /* Backdrop oscuro con desenfoque para el menú lateral */
+  .mobile-nav-backdrop {
+    display: block;
     position: fixed;
-    top: calc(var(--header-height) + env(safe-area-inset-top, 0px));
-    left: 0;
-    right: 0;
-    background: #FFFFFF;
-    color: #141414;
-    flex-direction: column;
-    padding: 20px 24px;
-    gap: 14px;
-    border-bottom: 4px solid var(--orange);
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
-    transform: translateY(-120%);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(3px);
+    z-index: 1999;
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-    z-index: 150;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    transition: opacity 0.28s ease;
   }
 
-  [data-theme="dark"] nav.nav-links {
-    background: #1c1c1c;
-    color: #F2F1ED;
+  .mobile-nav-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Menú lateral moderno tipo Drawer (desliza desde la izquierda) */
+  nav.nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 84%;
+    max-width: 320px;
+    height: 100vh;
+    height: 100dvh;
+    background: var(--card);
+    color: var(--ink);
+    flex-direction: column;
+    padding: 0 0 30px 0;
+    gap: 0;
+    box-shadow: 10px 0 35px rgba(0, 0, 0, 0.5);
+    transform: translateX(-105%);
+    opacity: 1;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border-right: 3px solid var(--orange);
+    border-bottom: none;
   }
 
   nav.nav-links.open {
-    transform: translateY(0);
-    opacity: 1;
+    transform: translateX(0);
     pointer-events: auto;
   }
 
-  nav.nav-links > a,
-  .nav-dropdown-toggle {
+  /* Cabecera interna del drawer móvil */
+  .mobile-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: var(--orange);
+    color: #141414;
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 1.45rem;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+  }
+
+  .mobile-drawer-header b {
+    color: #FFFFFF;
+  }
+
+  .btn-close-drawer {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #141414;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-close-drawer:active {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  /* Enlaces de primer nivel en el drawer */
+  nav.nav-links > a {
     font-size: 1.15rem;
+    font-family: var(--head);
     font-weight: 700;
     width: 100%;
-    padding: 10px 0;
+    padding: 14px 20px;
     border-bottom: 1px solid var(--line);
     color: var(--ink);
-    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
   }
 
-  .dropdown-menu {
-    position: static;
-    transform: none !important;
-    box-shadow: none;
-    border: none;
+  nav.nav-links > a:hover,
+  nav.nav-links > a.active {
     background: var(--bg-alt);
-    margin: 8px 0;
-    padding: 6px 0;
-    border-radius: var(--radius-sm);
-    display: none;
-    opacity: 1;
-    pointer-events: auto;
+    color: var(--orange-d);
   }
 
-  .nav-dropdown.open .dropdown-menu {
-    display: block;
+  nav.nav-links > a.active::after {
+    display: none;
+  }
+
+  /* Contenedor del desplegable Productos en el drawer */
+  .nav-dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-dropdown-toggle {
+    font-size: 1.15rem;
+    font-family: var(--head);
+    font-weight: 700;
+    width: 100%;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    background: none;
+    cursor: pointer;
+  }
+
+  /* Subcategorías visibles e indentadas */
+  .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: var(--bg-alt) !important;
+    padding: 4px 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    width: 100% !important;
   }
 
   .dropdown-menu a {
-    padding: 10px 16px;
-    font-size: 1rem;
+    padding: 12px 20px 12px 28px !important;
+    font-size: 0.96rem !important;
+    font-weight: 600 !important;
+    color: var(--ink-secondary) !important;
+    border-left: 4px solid transparent;
+    display: block !important;
+    text-decoration: none !important;
+    transition: all 0.15s ease;
+  }
+
+  .dropdown-menu a:hover,
+  .dropdown-menu a.active {
+    color: var(--orange-d) !important;
+    border-left-color: var(--orange) !important;
+    background: var(--card) !important;
+  }
+
+  .dropdown-menu a.dropdown-divider {
+    border-top: 1px dashed var(--line) !important;
+    margin-top: 4px;
+    padding-top: 12px !important;
+    font-weight: 700 !important;
+    color: var(--orange-d) !important;
   }
 
   /* Ocultar botón de texto de WhatsApp en la barra superior móvil (ya existe el flotante táctil) */
