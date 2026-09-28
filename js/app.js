@@ -350,6 +350,19 @@
         drawerHeader.querySelector('.btn-close-drawer').addEventListener('click', closeMobileNav);
       }
 
+      // Inyectar pie de drawer móvil si no existe
+      if (!navLinks.querySelector('.mobile-drawer-footer')) {
+        const drawerFooter = document.createElement('div');
+        drawerFooter.className = 'mobile-drawer-footer';
+        drawerFooter.innerHTML = `
+          <a href="https://wa.me/5493580000000?text=Hola!%20Quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" class="drawer-wa-btn">
+            💬 WhatsApp Directo
+          </a>
+          <span class="drawer-info-text">📍 Río Cuarto, Córdoba</span>
+        `;
+        navLinks.appendChild(drawerFooter);
+      }
+
       function openMobileNav() {
         navLinks.classList.add('open');
         navBackdrop.classList.add('open');

@@ -184,65 +184,79 @@ header {
     pointer-events: auto;
   }
 
-  /* Cabecera interna del drawer móvil */
+  /* Cabecera interna del drawer móvil con estilo premium de marca */
   .mobile-drawer-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 20px;
-    background: var(--orange);
-    color: #141414;
+    padding: 18px 20px;
+    background: #141414;
+    color: #FFFFFF;
     font-family: var(--head);
     font-weight: 800;
-    font-size: 1.45rem;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    border-bottom: 3px solid var(--orange);
+    flex-shrink: 0;
   }
 
   .mobile-drawer-header b {
-    color: #FFFFFF;
+    color: var(--orange);
   }
 
   .btn-close-drawer {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    color: #141414;
+    color: #FFFFFF;
     border-radius: var(--radius-sm);
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
   }
 
   .btn-close-drawer:active {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.25);
   }
 
-  /* Enlaces de primer nivel en el drawer */
-  nav.nav-links > a {
-    font-size: 1.15rem;
-    font-family: var(--head);
-    font-weight: 700;
-    width: 100%;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--line);
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
+  /* Enlaces de primer nivel en el drawer con alto contraste */
+  nav.nav-links > a,
+  .nav-dropdown-toggle {
+    font-size: 1.15rem !important;
+    font-family: var(--head) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    width: 100% !important;
+    padding: 15px 20px !important;
+    border-bottom: 1px solid var(--line) !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    color: var(--ink) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    background: none !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
   }
 
   nav.nav-links > a:hover,
+  nav.nav-links > a:active,
   nav.nav-links > a.active {
-    background: var(--bg-alt);
-    color: var(--orange-d);
+    background: rgba(245, 160, 0, 0.1) !important;
+    color: var(--orange) !important;
   }
 
   nav.nav-links > a.active::after {
-    display: none;
+    display: none !important;
   }
 
   /* Contenedor del desplegable Productos en el drawer */
@@ -252,33 +266,14 @@ header {
     flex-direction: column;
   }
 
-  .nav-dropdown-toggle {
-    font-size: 1.15rem;
-    font-family: var(--head);
-    font-weight: 700;
-    width: 100%;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--line);
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-transform: uppercase;
-    background: none;
-    cursor: pointer;
-  }
-
-  /* Subcategorías visibles e indentadas */
+  /* Subcategorías visibles, nítidas e indentadas */
   .dropdown-menu {
     position: static !important;
     transform: none !important;
     box-shadow: none !important;
     border: none !important;
-    background: var(--bg-alt) !important;
-    padding: 4px 0 !important;
+    background: rgba(0, 0, 0, 0.04) !important;
+    padding: 6px 0 !important;
     margin: 0 !important;
     display: flex !important;
     flex-direction: column !important;
@@ -287,30 +282,88 @@ header {
     width: 100% !important;
   }
 
+  :root[data-theme="dark"] .dropdown-menu {
+    background: rgba(255, 255, 255, 0.04) !important;
+  }
+
   .dropdown-menu a {
-    padding: 12px 20px 12px 28px !important;
-    font-size: 0.96rem !important;
+    padding: 13px 20px 13px 28px !important;
+    font-size: 0.98rem !important;
     font-weight: 600 !important;
-    color: var(--ink-secondary) !important;
-    border-left: 4px solid transparent;
-    display: block !important;
+    color: var(--ink) !important;
+    border-left: 3px solid transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
     text-decoration: none !important;
-    transition: all 0.15s ease;
+    opacity: 0.92 !important;
+    transition: all 0.15s ease !important;
+  }
+
+  .dropdown-menu a::before {
+    content: "›";
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
   }
 
   .dropdown-menu a:hover,
+  .dropdown-menu a:active,
   .dropdown-menu a.active {
-    color: var(--orange-d) !important;
+    color: var(--orange) !important;
+    opacity: 1 !important;
     border-left-color: var(--orange) !important;
-    background: var(--card) !important;
+    background: rgba(245, 160, 0, 0.12) !important;
   }
 
   .dropdown-menu a.dropdown-divider {
     border-top: 1px dashed var(--line) !important;
-    margin-top: 4px;
-    padding-top: 12px !important;
+    margin-top: 6px !important;
+    padding-top: 14px !important;
     font-weight: 700 !important;
-    color: var(--orange-d) !important;
+    color: var(--orange) !important;
+    opacity: 1 !important;
+  }
+
+  .dropdown-menu a.dropdown-divider::before {
+    content: "→";
+    font-size: 1.1rem;
+  }
+
+  /* Footer del drawer móvil */
+  .mobile-drawer-footer {
+    margin-top: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+    flex-shrink: 0;
+  }
+
+  .drawer-wa-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25D366;
+    color: #FFFFFF !important;
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+  }
+
+  .drawer-info-text {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: center;
+    font-weight: 500;
   }
 
   /* Ocultar botón de texto de WhatsApp en la barra superior móvil (ya existe el flotante táctil) */
