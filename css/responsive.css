@@ -134,17 +134,24 @@ header {
     transform: scale(0.95);
   }
 
-  /* Backdrop oscuro con desenfoque para el menú lateral */
+  /* Header elevador cuando el menú móvil está abierto */
+  header.nav-open {
+    z-index: 2500 !important;
+  }
+
+  /* Backdrop oscuro limpio SIN desenfoque (elimina el efecto borroso en celulares) */
   .mobile-nav-backdrop {
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(3px);
-    z-index: 1999;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    z-index: 1500;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.28s ease;
+    transition: opacity 0.25s ease;
   }
 
   .mobile-nav-backdrop.open {
@@ -152,36 +159,39 @@ header {
     pointer-events: auto;
   }
 
-  /* Menú lateral moderno tipo Drawer (desliza desde la izquierda) */
+  /* Menú lateral moderno tipo Drawer (desliza desde la izquierda nítido y sin desenfoque) */
   nav.nav-links {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 84%;
-    max-width: 320px;
-    height: 100vh;
-    height: 100dvh;
-    background: var(--card);
-    color: var(--ink);
-    flex-direction: column;
-    padding: 0 0 30px 0;
-    gap: 0;
-    box-shadow: 10px 0 35px rgba(0, 0, 0, 0.5);
-    transform: translateX(-105%);
-    opacity: 1;
-    pointer-events: none;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 2000;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    border-right: 3px solid var(--orange);
-    border-bottom: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 295px !important;
+    max-width: 82vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: var(--card) !important;
+    color: var(--ink) !important;
+    flex-direction: column !important;
+    padding: 0 0 30px 0 !important;
+    gap: 0 !important;
+    box-shadow: 6px 0 25px rgba(0, 0, 0, 0.4) !important;
+    transform: translate3d(-100%, 0, 0) !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 2600 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-right: 3px solid var(--orange) !important;
+    border-bottom: none !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
   }
 
   nav.nav-links.open {
-    transform: translateX(0);
-    pointer-events: auto;
+    transform: translate3d(0, 0, 0) !important;
+    pointer-events: auto !important;
   }
 
   /* Cabecera interna del drawer móvil con estilo premium de marca */

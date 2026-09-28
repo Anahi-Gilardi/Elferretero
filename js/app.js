@@ -363,7 +363,10 @@
         navLinks.appendChild(drawerFooter);
       }
 
+      const header = document.querySelector('header');
+
       function openMobileNav() {
+        if (header) header.classList.add('nav-open');
         navLinks.classList.add('open');
         navBackdrop.classList.add('open');
         mobileToggle.setAttribute('aria-expanded', 'true');
@@ -371,6 +374,7 @@
       }
 
       function closeMobileNav() {
+        if (header) header.classList.remove('nav-open');
         navLinks.classList.remove('open');
         navBackdrop.classList.remove('open');
         mobileToggle.setAttribute('aria-expanded', 'false');
