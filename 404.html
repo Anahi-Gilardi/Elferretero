@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Página no encontrada | El Ferretero Río Cuarto</title>
+  <meta name="description" content="La página que buscas no existe o fue movida. Explora nuestras secciones de electricidad, herramientas, limpieza, libros y combos en El Ferretero Río Cuarto.">
+  <meta name="theme-color" content="#f97316">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f97316'><path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6-4.3 4.3a1 1 0 0 0-.2.3l-2 5a1 1 0 0 0 1.3 1.3l5-2a1 1 0 0 0 .3-.2l4.3-4.3 1.6 1.6a1 1 0 0 0 1.4-1.4l-7.3-7.3a1 1 0 0 0-1.4 0z'/></svg>">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .error-hero {
+      padding: 60px 20px 80px;
+      text-align: center;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .error-code {
+      font-size: clamp(4rem, 12vw, 7rem);
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -2px;
+    }
+    .error-card {
+      max-width: 640px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      box-shadow: var(--shadow-md);
+      margin: 0 auto;
+    }
+    .error-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+      text-align: left;
+    }
+    .error-link-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .error-link-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado simple -->
+  <header>
+    <div class="wrap top-bar">
+      <a class="logo" href="index.html" aria-label="Ir al inicio de El Ferretero">
+        EL <b>FERRETERO</b>
+        <span class="logo-badge">Río Cuarto</span>
+      </a>
+      <div class="header-actions">
+        <a class="btn btn-sm btn-header-wa" href="https://wa.me/5493584238976?text=Hola!%20Tengo%20una%20consulta" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="error-hero">
+      <div class="error-card">
+        <div class="error-code">404</div>
+        <h1 style="font-size: 1.5rem; margin-bottom: 12px;">Página no encontrada</h1>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">
+          La dirección que abriste no existe o fue trasladada. Pero no te preocupes, ¡todas nuestras secciones y productos están disponibles!
+        </p>
+
+        <h2 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--accent);">
+          Elige una sección para continuar:
+        </h2>
+
+        <div class="error-links">
+          <a href="electricidad.html" class="error-link-btn">
+            ⚡ <span>Electricidad</span>
+          </a>
+          <a href="herramienta-seguridad.html" class="error-link-btn">
+            🔧 <span>Herramientas y Seguridad</span>
+          </a>
+          <a href="mantenimiento-limpieza.html" class="error-link-btn">
+            🧹 <span>Mantenimiento y Limpieza</span>
+          </a>
+          <a href="libros-ebook.html" class="error-link-btn">
+            📚 <span>Libros / E-Book</span>
+          </a>
+          <a href="mayorista-combos.html" class="error-link-btn">
+            📦 <span>Mayorista y Combos</span>
+          </a>
+          <a href="productos.html" class="error-link-btn">
+            🛒 <span>Todos los Productos</span>
+          </a>
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px;">
+          <a href="index.html" class="btn">Ir al Inicio</a>
+          <a href="https://wa.me/5493584238976?text=Hola!%20Necesito%20ayuda%20para%20encontrar%20un%20producto" target="_blank" rel="noopener noreferrer" class="btn ghost">Consultar por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="wrap text-center" style="padding: 20px; font-size: 0.85rem; color: var(--text-muted);">
+      <p><strong>El Ferretero</strong> · San Martín 2395, Río Cuarto, Córdoba · Cel: 358 423-8976</p>
+    </div>
+  </footer>
+</body>
+</html>
