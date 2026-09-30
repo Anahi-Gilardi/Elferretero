@@ -1,592 +1,1176 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Catálogo Completo de Productos | El Ferretero</title>
-  <meta name="description" content="Catálogo completo de herramientas, electricidad, limpieza, manuales técnicos y combos mayoristas en Río Cuarto.">
-
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#F5A000">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="El Ferretero">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css?v=2.2">
-  <link rel="stylesheet" href="css/responsive.css?v=2.2">
-</head>
-<body>
-
-  <!-- ==================== HEADER (DOBLE BARRA) ==================== -->
-  <header>
-    <div class="wrap top-bar">
-      <a class="logo" href="index.html" aria-label="Ir al inicio de El Ferretero">
-        EL <b>FERRETERO</b>
-        <span class="logo-badge">Río Cuarto</span>
-      </a>
-
-      <nav class="nav-links" id="navLinks" aria-label="Principal">
-        <a href="index.html">Inicio</a>
-        <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle" type="button" aria-expanded="false" style="font-weight: 800; border-bottom: 3px solid #141414;">
-            Productos
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="dropdown-menu">
-            <a href="mantenimiento-limpieza.html">Mantenimiento y Limpieza</a>
-            <a href="electricidad.html">Electricidad</a>
-            <a href="libros-ebook.html">Libros / E-Book</a>
-            <a href="herramienta-seguridad.html">Herramienta Seguridad</a>
-            <a href="mayorista-combos.html">Mayorista Combos</a>
-            <a href="productos.html" class="dropdown-divider">Ver todos los productos →</a>
-          </div>
-        </div>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-
-      <div class="header-actions">
-        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Cambiar tema" title="Modo Claro / Oscuro">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
-        <button class="cart-toggle-btn" data-open-cart aria-label="Ver lista de materiales">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          <span>Pedido</span>
-          <span class="cart-badge" style="display:none;">0</span>
-        </button>
-        <a class="btn btn-sm btn-header-wa" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20Productos" target="_blank" rel="noopener noreferrer" data-wa>WhatsApp</a>
-        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú de navegación">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Sub-barra con los 5 rubros directos -->
-    <div class="category-nav-bar">
-      <div class="wrap category-nav-container">
-        <a href="mantenimiento-limpieza.html" class="category-nav-item">MANTENIMIENTO Y LIMPIEZA DEL HOGAR</a>
-        <a href="electricidad.html" class="category-nav-item">ELECTRICIDAD</a>
-        <a href="libros-ebook.html" class="category-nav-item">LIBROS / E-BOOK</a>
-        <a href="herramienta-seguridad.html" class="category-nav-item">HERRAMIENTA SEGURIDAD</a>
-        <a href="mayorista-combos.html" class="category-nav-item">MAYORISTA COMBOS</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- ==================== CONTENIDO ==================== -->
-  <main>
-    <section>
-      <div class="wrap">
-        <div class="head">
-          <div>
-            <h2>Catálogo General de Productos</h2>
-            <p>Explorá todas nuestras herramientas, materiales y ofertas. Agregá al pedido y cotizá directo por WhatsApp.</p>
-          </div>
-          <div class="search-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="catalogSearch" placeholder="Buscar por herramienta, marca o código...">
-          </div>
-        </div>
-
-        <!-- Chips de categoría para filtrado rápido en la misma página o salto -->
-        <div class="category-chips" style="margin-bottom: 24px;">
-          <a class="chip active" href="productos.html">Todos</a>
-          <a class="chip" href="mantenimiento-limpieza.html">Mantenimiento y Limpieza</a>
-          <a class="chip" href="electricidad.html">Electricidad</a>
-          <a class="chip" href="libros-ebook.html">Libros / E-Book</a>
-          <a class="chip" href="herramienta-seguridad.html">Herramienta Seguridad</a>
-          <a class="chip" href="mayorista-combos.html">Mayorista Combos</a>
-        </div>
-
-        <div class="grid">
-          <!-- Hidrolavadora Alta Presión 1400W 110 Bar -->
-          <article class="promo" data-id="hidrolavadora-1400w">
-            <span class="tag">-15%</span>
-            <div class="ph">
-              <img src="img/productos/hidrolavadora-1400w.jpg" alt="Hidrolavadora Alta Presión 1400W 110 Bar" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Mantenimiento y Limpieza</span></div>
-              <h3>Hidrolavadora Alta Presión 1400W 110 Bar</h3>
-              <p class="desc">Bomba de aluminio de alto rendimiento con manguera de 5m, lanza con boquilla regulable y aplicador de espuma.</p>
-              <div class="price"><b>$92.500</b><s>$108.900</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="hidrolavadora-1400w">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20hidrolavadora-1400w" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Aspiradora Polvo y Agua 20L 1400W -->
-          <article class="promo" data-id="aspiradora-20l">
-            <span class="tag">-14%</span>
-            <div class="ph">
-              <img src="img/productos/aspiradora-20l.jpg" alt="Aspiradora Polvo y Agua 20L 1400W" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Mantenimiento y Limpieza</span></div>
-              <h3>Aspiradora Polvo y Agua 20L 1400W</h3>
-              <p class="desc">Tambor de acero inoxidable, función soplador, filtro lavable HEPA y kit de boquillas para piso y rincones.</p>
-              <div class="price"><b>$84.900</b><s>$99.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="aspiradora-20l">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20aspiradora-20l" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Set Mopa Giratoria 360° Acero Inoxidable -->
-          <article class="promo" data-id="mopa-giratoria-360">
-            <span class="tag">-18%</span>
-            <div class="ph">
-              <img src="img/productos/mopa-giratoria-360.jpg" alt="Set Mopa Giratoria 360° Acero Inoxidable" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Mantenimiento y Limpieza</span></div>
-              <h3>Set Mopa Giratoria 360° Acero Inoxidable</h3>
-              <p class="desc">Balde con centrífuga escurridora reforzada de acero y 2 paños de microfibra de alta absorción.</p>
-              <div class="price"><b>$21.400</b><s>$26.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="mopa-giratoria-360">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20mopa-giratoria-360" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Escalera Tijera de Aluminio 5 Escalones -->
-          <article class="promo" data-id="escalera-aluminio-5">
-            <span class="tag">Oferta</span>
-            <div class="ph">
-              <img src="img/productos/escalera-aluminio-5.jpg" alt="Escalera Tijera de Aluminio 5 Escalones" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Mantenimiento y Limpieza</span></div>
-              <h3>Escalera Tijera de Aluminio 5 Escalones</h3>
-              <p class="desc">Perfil reforzado antideslizante con capacidad de carga hasta 150kg. Liviana y plegable.</p>
-              <div class="price"><b>$48.600</b><s>$56.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="escalera-aluminio-5">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20escalera-aluminio-5" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Rollo Cable Unipolar 2.5mm IRAM 100m -->
-          <article class="promo" data-id="rollo-cable-2-5">
-            <span class="tag">-15%</span>
-            <div class="ph">
-              <img src="img/productos/rollo-cable-2-5.jpg" alt="Rollo Cable Unipolar 2.5mm IRAM 100m" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Electricidad</span></div>
-              <h3>Rollo Cable Unipolar 2.5mm IRAM 100m</h3>
-              <p class="desc">Cobre puro 100% antihidrocarburo y no propagante de llama. Aprobado según normativa IRAM.</p>
-              <div class="price"><b>$38.500</b><s>$45.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="rollo-cable-2-5">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20rollo-cable-2-5" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Kit Tablero Térmicas y Disyuntor Bipolar -->
-          <article class="promo" data-id="tablero-termicas">
-            <span class="tag">Pack</span>
-            <div class="ph">
-              <img src="img/productos/tablero-termicas.jpg" alt="Kit Tablero Térmicas y Disyuntor Bipolar" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Electricidad</span></div>
-              <h3>Kit Tablero Térmicas y Disyuntor Bipolar</h3>
-              <p class="desc">Caja estanca para 8 bocas + Disyuntor bipolar 25A + 2 Térmicas 16A y 20A normalizadas Sica.</p>
-              <div class="price"><b>$45.200</b><s>$52.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="tablero-termicas">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20tablero-termicas" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Multímetro Tester Digital Profesional -->
-          <article class="promo" data-id="tester-multimetro">
-            <span class="tag">-20%</span>
-            <div class="ph">
-              <img src="img/productos/tester-multimetro.jpg" alt="Multímetro Tester Digital Profesional" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Electricidad</span></div>
-              <h3>Multímetro Tester Digital Profesional</h3>
-              <p class="desc">Medición precisa de voltaje AC/DC, amperaje, resistencia y continuidad sonora. Puntas y batería incluidas.</p>
-              <div class="price"><b>$16.800</b><s>$21.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="tester-multimetro">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20tester-multimetro" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Reflector Proyector LED 50W Exterior IP65 -->
-          <article class="promo" data-id="reflector-led-50w">
-            <span class="tag">Destacado</span>
-            <div class="ph">
-              <img src="img/productos/reflector-led-50w.jpg" alt="Reflector Proyector LED 50W Exterior IP65" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Electricidad</span></div>
-              <h3>Reflector Proyector LED 50W Exterior IP65</h3>
-              <p class="desc">Luz blanca fría de alta potencia 4500 lúmenes, resistente a lluvia y polvo para frentes o talleres.</p>
-              <div class="price"><b>$19.500</b><s>$24.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="reflector-led-50w">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20reflector-led-50w" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- E-Book: Manual de Instalaciones Eléctricas -->
-          <article class="promo" data-id="ebook-electricidad">
-            <span class="tag">-27%</span>
-            <div class="ph">
-              <img src="img/productos/ebook-electricidad.jpg" alt="E-Book: Manual de Instalaciones Eléctricas" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Libros / E-Book</span></div>
-              <h3>E-Book: Manual de Instalaciones Eléctricas</h3>
-              <p class="desc">Guía completa digital con diagramas de circuitos, cálculo de conductores y normativas de seguridad AEA.</p>
-              <div class="price"><b>$6.900</b><s>$9.500</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="ebook-electricidad">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20ebook-electricidad" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- E-Book: Guía Práctica de Plomería y Gas -->
-          <article class="promo" data-id="ebook-plomeria">
-            <span class="tag">-27%</span>
-            <div class="ph">
-              <img src="img/productos/ebook-plomeria.jpg" alt="E-Book: Guía Práctica de Plomería y Gas" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Libros / E-Book</span></div>
-              <h3>E-Book: Guía Práctica de Plomería y Gas</h3>
-              <p class="desc">Técnicas de termofusión, desagües cloacales, bombas de agua y resolución de pérdidas comunes.</p>
-              <div class="price"><b>$5.800</b><s>$8.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="ebook-plomeria">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20ebook-plomeria" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- E-Book: Técnicas de Soldadura y Herrería -->
-          <article class="promo" data-id="ebook-herreria">
-            <span class="tag">-25%</span>
-            <div class="ph">
-              <img src="img/productos/ebook-herreria.jpg" alt="E-Book: Técnicas de Soldadura y Herrería" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Libros / E-Book</span></div>
-              <h3>E-Book: Técnicas de Soldadura y Herrería</h3>
-              <p class="desc">Soldadura con electrodo revestido y MIG/MAG, escuadras, cortes de perfiles y proyectos paso a paso.</p>
-              <div class="price"><b>$7.500</b><s>$10.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="ebook-herreria">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20ebook-herreria" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- E-Book: Guía de Construcción en Seco -->
-          <article class="promo" data-id="ebook-durlock">
-            <span class="tag">-25%</span>
-            <div class="ph">
-              <img src="img/productos/ebook-durlock.jpg" alt="E-Book: Guía de Construcción en Seco" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Libros / E-Book</span></div>
-              <h3>E-Book: Guía de Construcción en Seco</h3>
-              <p class="desc">Manual paso a paso para tabiques, cielorrasos suspendidos, masillado y cálculo de perfilería.</p>
-              <div class="price"><b>$8.200</b><s>$11.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="ebook-durlock">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20ebook-durlock" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Taladro Percutor 650W + Maletín -->
-          <article class="promo" data-id="taladro-650w">
-            <span class="tag">-20%</span>
-            <div class="ph">
-              <img src="img/productos/taladro-650w.jpg" alt="Taladro Percutor 650W + Maletín" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
-              <h3>Taladro Percutor 650W + Maletín</h3>
-              <p class="desc">Mandril de 13mm, velocidad variable y reversible. Potente motor con selector de percusión y accesorios.</p>
-              <div class="price"><b>$64.900</b><s>$81.100</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="taladro-650w">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20taladro-650w" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Amoladora Angular 4 1/2" 850W -->
-          <article class="promo" data-id="amoladora-4-1-2">
-            <span class="tag">Oferta</span>
-            <div class="ph">
-              <img src="img/productos/amoladora-4-1-2.jpg" alt="Amoladora Angular 4 1/2" 850W" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
-              <h3>Amoladora Angular 4 1/2" 850W</h3>
-              <p class="desc">Diseño ergonómico, traba de eje y guarda de protección ajustable contra chispas. 11000 RPM.</p>
-              <div class="price"><b>$58.900</b><s>$69.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="amoladora-4-1-2">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20amoladora-4-1-2" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Casco de Seguridad Industrial Homologado -->
-          <article class="promo" data-id="casco-seguridad">
-            <span class="tag">-22%</span>
-            <div class="ph">
-              <img src="img/productos/casco-seguridad.jpg" alt="Casco de Seguridad Industrial Homologado" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
-              <h3>Casco de Seguridad Industrial Homologado</h3>
-              <p class="desc">Casco de polietileno de alta densidad con arnés a cremallera regulable y banda antisudor.</p>
-              <div class="price"><b>$8.500</b><s>$11.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="casco-seguridad">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20casco-seguridad" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Antiparras de Seguridad Anti-Empaño UV400 -->
-          <article class="promo" data-id="antiparras-seguridad">
-            <span class="tag">-23%</span>
-            <div class="ph">
-              <img src="img/productos/antiparras-seguridad.jpg" alt="Antiparras de Seguridad Anti-Empaño UV400" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
-              <h3>Antiparras de Seguridad Anti-Empaño UV400</h3>
-              <p class="desc">Visor envolvente de policarbonato con patillas ajustables y máxima resistencia a impactos.</p>
-              <div class="price"><b>$4.200</b><s>$5.500</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="antiparras-seguridad">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20antiparras-seguridad" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Arnés de Seguridad Integral Anticaídas -->
-          <article class="promo" data-id="arnes-seguridad">
-            <span class="tag">Seguridad</span>
-            <div class="ph">
-              <img src="img/productos/arnes-seguridad.jpg" alt="Arnés de Seguridad Integral Anticaídas" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
-              <h3>Arnés de Seguridad Integral Anticaídas</h3>
-              <p class="desc">Con toma dorsal y frontal para trabajos en altura. Cintas de poliéster de alta tenacidad homologadas.</p>
-              <div class="price"><b>$34.500</b><s>$42.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="arnes-seguridad">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20arnes-seguridad" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Combo Dúo Power: Taladro + Amoladora -->
-          <article class="promo" data-id="combo-duo-power">
-            <span class="tag">-19%</span>
-            <div class="ph">
-              <img src="img/productos/combo-duo-power.jpg" alt="Combo Dúo Power: Taladro + Amoladora" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Mayorista Combos</span></div>
-              <h3>Combo Dúo Power: Taladro + Amoladora</h3>
-              <p class="desc">Kit profesional completo: Taladro percutor 650W + Amoladora 850W con maletín y 10 discos de corte de regalo.</p>
-              <div class="price"><b>$109.900</b><s>$135.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-duo-power">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20combo-duo-power" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Combo Obra: Carretilla + Cuchara + Nivel + 3 Baldes -->
-          <article class="promo" data-id="combo-albanileria">
-            <span class="tag">Pack Obra</span>
-            <div class="ph">
-              <img src="img/productos/combo-albanileria.jpg" alt="Combo Obra: Carretilla + Cuchara + Nivel + 3 Baldes" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Mayorista Combos</span></div>
-              <h3>Combo Obra: Carretilla + Cuchara + Nivel + 3 Baldes</h3>
-              <p class="desc">Kit mayorista para construcción: Carretilla chapa reforzada 80L + cuchara forjada + nivel de mano + baldes de albañil.</p>
-              <div class="price"><b>$78.000</b><s>$94.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-albanileria">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20combo-albanileria" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Pack Mayorista Discos de Corte 115mm x 50u -->
-          <article class="promo" data-id="pack-discos-corte">
-            <span class="tag">Mayorista</span>
-            <div class="ph">
-              <img src="img/productos/pack-discos-corte.jpg" alt="Pack Mayorista Discos de Corte 115mm x 50u" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Mayorista Combos</span></div>
-              <h3>Pack Mayorista Discos de Corte 115mm x 50u</h3>
-              <p class="desc">Caja cerrada de 50 discos de corte ultrafinos 1mm para amoladora angular de 4 1/2". Máxima durabilidad.</p>
-              <div class="price"><b>$32.000</b><s>$41.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="pack-discos-corte">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20pack-discos-corte" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Combo Electricista Pro: Pasacable + Pinza + Pelacables -->
-          <article class="promo" data-id="combo-electricista">
-            <span class="tag">-20%</span>
-            <div class="ph">
-              <img src="img/productos/combo-electricista.jpg" alt="Combo Electricista Pro: Pasacable + Pinza + Pelacables" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="body-header"><span class="category-tag">Mayorista Combos</span></div>
-              <h3>Combo Electricista Pro: Pasacable + Pinza + Pelacables</h3>
-              <p class="desc">Cinta pasacable de acero 20m + Pinza universal aislada 1000V + Pelacables automático + Buscapolo digital.</p>
-              <div class="price"><b>$49.900</b><s>$62.000</s></div>
-              <div class="card-actions">
-                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-electricista">Sumar al pedido</button>
-                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20combo-electricista" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div><b>EL FERRETERO</b><br>Tu ferretero de confianza · San Martín 2395, Río Cuarto, Córdoba · Cel: 358 423-8976</div>
-      <div class="footer-badges"><span>Envíos a todo el país</span></div>
-    </div>
-  </footer>
-
-  <!-- Drawer de carrito -->
-    <!-- ==================== DRAWER DEL CARRITO / COTIZADOR GLOBAL ==================== -->
-  <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
-  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras y pedidos">
-    <div class="cart-header">
-      <h3>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="21" r="1"></circle>
-          <circle cx="20" cy="21" r="1"></circle>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-        Lista de Pedido
-      </h3>
-      <button class="btn-clear-cart" id="clearCartBtn" title="Vaciar toda la lista" style="display:none;">Vaciar</button>
-      <button class="btn-close-cart" id="closeCartBtn" aria-label="Cerrar lista">✕</button>
-    </div>
-
-    <!-- Lista dinámica de ítems con imágenes -->
-    <div class="cart-items" id="cartItemsList"></div>
-
-    <!-- Resumen y botón de envío a WhatsApp -->
-    <div class="cart-footer">
-      <div class="cart-total-row">
-        <span>Total estimado:</span>
-        <strong id="cartTotalAmount">$0</strong>
-      </div>
-      <div class="cart-delivery-opt">
-        <span class="delivery-label">Modalidad de entrega:</span>
-        <label>
-          <input type="radio" name="cartDelivery" value="Retiro en sucursal (San Martín 2395)" checked>
-          <span>🏪 Retiro en local (San Martín 2395)</span>
-        </label>
-        <label>
-          <input type="radio" name="cartDelivery" value="Envío a domicilio en Río Cuarto">
-          <span>🚚 Envío a domicilio en Río Cuarto</span>
-        </label>
-        <label>
-          <input type="radio" name="cartDelivery" value="Envío a todo el país">
-          <span>📦 Envío al interior del país</span>
-        </label>
-        <input type="text" id="cartClientName" class="cart-client-name" placeholder="Tu nombre o empresa (opcional)...">
-      </div>
-      <p class="cart-disclaimer">Al pulsar el botón se abrirá WhatsApp con el pedido desglosado listo para coordinar con nosotros.</p>
-      <button class="btn btn-full" id="cartCheckoutWa">Enviar pedido por WhatsApp</button>
-    </div>
-  </aside>
-
-  <!-- Botón WhatsApp -->
-  <a class="wa" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20Productos" target="_blank" rel="noopener noreferrer" data-wa aria-label="WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
-  </a>
-
-  <script src="js/app.js?v=2.2"></script>
-</body>
-</html>
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Catálogo Completo de Productos | El Ferretero</title>
+
+  <meta name="description" content="Catálogo completo de herramientas, electricidad, limpieza, manuales técnicos y combos mayoristas en Río Cuarto.">
+
+
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#F5A000">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="apple-mobile-web-app-title" content="El Ferretero">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+  <link rel="stylesheet" href="css/variables.css">
+
+  <link rel="stylesheet" href="css/base.css">
+
+  <link rel="stylesheet" href="css/components.css?v=2.2">
+
+  <link rel="stylesheet" href="css/responsive.css?v=2.2">
+
+</head>
+
+<body>
+
+
+
+  <!-- ==================== HEADER (DOBLE BARRA) ==================== -->
+
+  <header>
+
+    <div class="wrap top-bar">
+
+      <a class="logo" href="index.html" aria-label="Ir al inicio de El Ferretero">
+
+        EL <b>FERRETERO</b>
+
+        <span class="logo-badge">Río Cuarto</span>
+
+      </a>
+
+
+
+      <nav class="nav-links" id="navLinks" aria-label="Principal">
+
+        <a href="index.html">Inicio</a>
+
+        <div class="nav-dropdown">
+
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false" style="font-weight: 800; border-bottom: 3px solid #141414;">
+
+            Productos
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+          </button>
+
+          <div class="dropdown-menu">
+
+            <a href="mantenimiento-limpieza.html">Mantenimiento y Limpieza</a>
+
+            <a href="electricidad.html">Electricidad</a>
+
+            <a href="libros-ebook.html">Libros / E-Book</a>
+
+            <a href="herramienta-seguridad.html">Herramienta Seguridad</a>
+
+            <a href="mayorista-combos.html">Mayorista Combos</a>
+
+            <a href="productos.html" class="dropdown-divider">Ver todos los productos →</a>
+
+          </div>
+
+        </div>
+
+        <a href="contacto.html">Contacto</a>
+
+      </nav>
+
+
+
+      <div class="header-actions">
+
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Cambiar tema" title="Modo Claro / Oscuro">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+
+        </button>
+
+        <button class="cart-toggle-btn" data-open-cart aria-label="Ver lista de materiales">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+
+          <span>Pedido</span>
+
+          <span class="cart-badge" style="display:none;">0</span>
+
+        </button>
+
+        <a class="btn btn-sm btn-header-wa" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20Productos" target="_blank" rel="noopener noreferrer" data-wa>WhatsApp</a>
+
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú de navegación">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Sub-barra con los 5 rubros directos -->
+
+    <div class="category-nav-bar">
+
+      <div class="wrap category-nav-container">
+
+        <a href="mantenimiento-limpieza.html" class="category-nav-item">MANTENIMIENTO Y LIMPIEZA DEL HOGAR</a>
+
+        <a href="electricidad.html" class="category-nav-item">ELECTRICIDAD</a>
+
+        <a href="libros-ebook.html" class="category-nav-item">LIBROS / E-BOOK</a>
+
+        <a href="herramienta-seguridad.html" class="category-nav-item">HERRAMIENTA SEGURIDAD</a>
+
+        <a href="mayorista-combos.html" class="category-nav-item">MAYORISTA COMBOS</a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ==================== CONTENIDO ==================== -->
+
+  <main>
+
+    <section>
+
+      <div class="wrap">
+
+        <div class="head">
+
+          <div>
+
+            <h2>Catálogo General de Productos</h2>
+
+            <p>Explorá todas nuestras herramientas, materiales y ofertas. Agregá al pedido y cotizá directo por WhatsApp.</p>
+
+          </div>
+
+          <div class="search-box">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+
+            <input type="text" id="catalogSearch" placeholder="Buscar por herramienta, marca o código...">
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Chips de categoría para filtrado reactivo instantáneo -->
+        <div class="category-chips" id="categoryChips" style="margin-bottom: 24px;">
+          <a class="chip active" href="productos.html" data-category="todos">Todos (21)</a>
+          <a class="chip" href="mantenimiento-limpieza.html" data-category="mantenimiento-limpieza">Mantenimiento y Limpieza (4)</a>
+          <a class="chip" href="electricidad.html" data-category="electricidad">Electricidad (4)</a>
+          <a class="chip" href="libros-ebook.html" data-category="libros-ebook">Libros / E-Book (4)</a>
+          <a class="chip" href="herramienta-seguridad.html" data-category="herramienta-seguridad">Herramienta Seguridad (5)</a>
+          <a class="chip" href="mayorista-combos.html" data-category="mayorista-combos">Mayorista Combos (4)</a>
+        </div>
+
+
+
+        <div class="grid">
+
+          <!-- Hidrolavadora Alta Presión 1400W 110 Bar -->
+
+          <article class="promo" data-id="hidrolavadora-1400w" data-category="mantenimiento-limpieza">
+
+            <span class="tag">-15%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/hidrolavadora-1400w.jpg" alt="Hidrolavadora Alta Presión 1400W 110 Bar" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Mantenimiento y Limpieza</span></div>
+
+              <h3>Hidrolavadora Alta Presión 1400W 110 Bar</h3>
+
+              <p class="desc">Bomba de aluminio de alto rendimiento con manguera de 5m, lanza con boquilla regulable y aplicador de espuma.</p>
+
+              <div class="price"><b>$92.500</b><s>$108.900</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="hidrolavadora-1400w">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20hidrolavadora-1400w" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Aspiradora Polvo y Agua 20L 1400W -->
+
+          <article class="promo" data-id="aspiradora-20l" data-category="mantenimiento-limpieza">
+
+            <span class="tag">-14%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/aspiradora-20l.jpg" alt="Aspiradora Polvo y Agua 20L 1400W" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Mantenimiento y Limpieza</span></div>
+
+              <h3>Aspiradora Polvo y Agua 20L 1400W</h3>
+
+              <p class="desc">Tambor de acero inoxidable, función soplador, filtro lavable HEPA y kit de boquillas para piso y rincones.</p>
+
+              <div class="price"><b>$84.900</b><s>$99.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="aspiradora-20l">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20aspiradora-20l" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Set Mopa Giratoria 360° Acero Inoxidable -->
+
+          <article class="promo" data-id="mopa-giratoria-360" data-category="mantenimiento-limpieza">
+
+            <span class="tag">-18%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/mopa-giratoria-360.jpg" alt="Set Mopa Giratoria 360° Acero Inoxidable" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Mantenimiento y Limpieza</span></div>
+
+              <h3>Set Mopa Giratoria 360° Acero Inoxidable</h3>
+
+              <p class="desc">Balde con centrífuga escurridora reforzada de acero y 2 paños de microfibra de alta absorción.</p>
+
+              <div class="price"><b>$21.400</b><s>$26.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="mopa-giratoria-360">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20mopa-giratoria-360" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Escalera Tijera de Aluminio 5 Escalones -->
+
+          <article class="promo" data-id="escalera-aluminio-5" data-category="mantenimiento-limpieza">
+
+            <span class="tag">Oferta</span>
+
+            <div class="ph">
+
+              <img src="img/productos/escalera-aluminio-5.jpg" alt="Escalera Tijera de Aluminio 5 Escalones" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Mantenimiento y Limpieza</span></div>
+
+              <h3>Escalera Tijera de Aluminio 5 Escalones</h3>
+
+              <p class="desc">Perfil reforzado antideslizante con capacidad de carga hasta 150kg. Liviana y plegable.</p>
+
+              <div class="price"><b>$48.600</b><s>$56.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="escalera-aluminio-5">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20escalera-aluminio-5" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Rollo Cable Unipolar 2.5mm IRAM 100m -->
+
+          <article class="promo" data-id="rollo-cable-2-5" data-category="electricidad">
+
+            <span class="tag">-15%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/rollo-cable-2-5.jpg" alt="Rollo Cable Unipolar 2.5mm IRAM 100m" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Electricidad</span></div>
+
+              <h3>Rollo Cable Unipolar 2.5mm IRAM 100m</h3>
+
+              <p class="desc">Cobre puro 100% antihidrocarburo y no propagante de llama. Aprobado según normativa IRAM.</p>
+
+              <div class="price"><b>$38.500</b><s>$45.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="rollo-cable-2-5">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20rollo-cable-2-5" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Kit Tablero Térmicas y Disyuntor Bipolar -->
+
+          <article class="promo" data-id="tablero-termicas" data-category="electricidad">
+
+            <span class="tag">Pack</span>
+
+            <div class="ph">
+
+              <img src="img/productos/tablero-termicas.jpg" alt="Kit Tablero Térmicas y Disyuntor Bipolar" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Electricidad</span></div>
+
+              <h3>Kit Tablero Térmicas y Disyuntor Bipolar</h3>
+
+              <p class="desc">Caja estanca para 8 bocas + Disyuntor bipolar 25A + 2 Térmicas 16A y 20A normalizadas Sica.</p>
+
+              <div class="price"><b>$45.200</b><s>$52.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="tablero-termicas">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20tablero-termicas" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Multímetro Tester Digital Profesional -->
+
+          <article class="promo" data-id="tester-multimetro" data-category="electricidad">
+
+            <span class="tag">-20%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/tester-multimetro.jpg" alt="Multímetro Tester Digital Profesional" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Electricidad</span></div>
+
+              <h3>Multímetro Tester Digital Profesional</h3>
+
+              <p class="desc">Medición precisa de voltaje AC/DC, amperaje, resistencia y continuidad sonora. Puntas y batería incluidas.</p>
+
+              <div class="price"><b>$16.800</b><s>$21.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="tester-multimetro">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20tester-multimetro" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Reflector Proyector LED 50W Exterior IP65 -->
+
+          <article class="promo" data-id="reflector-led-50w" data-category="electricidad">
+
+            <span class="tag">Destacado</span>
+
+            <div class="ph">
+
+              <img src="img/productos/reflector-led-50w.jpg" alt="Reflector Proyector LED 50W Exterior IP65" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Electricidad</span></div>
+
+              <h3>Reflector Proyector LED 50W Exterior IP65</h3>
+
+              <p class="desc">Luz blanca fría de alta potencia 4500 lúmenes, resistente a lluvia y polvo para frentes o talleres.</p>
+
+              <div class="price"><b>$19.500</b><s>$24.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="reflector-led-50w">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20reflector-led-50w" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- E-Book: Manual de Instalaciones Eléctricas -->
+
+          <article class="promo" data-id="ebook-electricidad" data-category="libros-ebook">
+
+            <span class="tag">-27%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/ebook-electricidad.jpg" alt="E-Book: Manual de Instalaciones Eléctricas" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Libros / E-Book</span></div>
+
+              <h3>E-Book: Manual de Instalaciones Eléctricas</h3>
+
+              <p class="desc">Guía completa digital con diagramas de circuitos, cálculo de conductores y normativas de seguridad AEA.</p>
+
+              <div class="price"><b>$6.900</b><s>$9.500</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="ebook-electricidad">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20ebook-electricidad" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- E-Book: Guía Práctica de Plomería y Gas -->
+
+          <article class="promo" data-id="ebook-plomeria" data-category="libros-ebook">
+
+            <span class="tag">-27%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/ebook-plomeria.jpg" alt="E-Book: Guía Práctica de Plomería y Gas" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Libros / E-Book</span></div>
+
+              <h3>E-Book: Guía Práctica de Plomería y Gas</h3>
+
+              <p class="desc">Técnicas de termofusión, desagües cloacales, bombas de agua y resolución de pérdidas comunes.</p>
+
+              <div class="price"><b>$5.800</b><s>$8.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="ebook-plomeria">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20ebook-plomeria" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- E-Book: Técnicas de Soldadura y Herrería -->
+
+          <article class="promo" data-id="ebook-herreria" data-category="libros-ebook">
+
+            <span class="tag">-25%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/ebook-herreria.jpg" alt="E-Book: Técnicas de Soldadura y Herrería" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Libros / E-Book</span></div>
+
+              <h3>E-Book: Técnicas de Soldadura y Herrería</h3>
+
+              <p class="desc">Soldadura con electrodo revestido y MIG/MAG, escuadras, cortes de perfiles y proyectos paso a paso.</p>
+
+              <div class="price"><b>$7.500</b><s>$10.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="ebook-herreria">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20ebook-herreria" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- E-Book: Guía de Construcción en Seco -->
+
+          <article class="promo" data-id="ebook-durlock" data-category="libros-ebook">
+
+            <span class="tag">-25%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/ebook-durlock.jpg" alt="E-Book: Guía de Construcción en Seco" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Libros / E-Book</span></div>
+
+              <h3>E-Book: Guía de Construcción en Seco</h3>
+
+              <p class="desc">Manual paso a paso para tabiques, cielorrasos suspendidos, masillado y cálculo de perfilería.</p>
+
+              <div class="price"><b>$8.200</b><s>$11.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="ebook-durlock">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20ebook-durlock" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Taladro Percutor 650W + Maletín -->
+
+          <article class="promo" data-id="taladro-650w" data-category="herramienta-seguridad">
+
+            <span class="tag">-20%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/taladro-650w.jpg" alt="Taladro Percutor 650W + Maletín" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
+
+              <h3>Taladro Percutor 650W + Maletín</h3>
+
+              <p class="desc">Mandril de 13mm, velocidad variable y reversible. Potente motor con selector de percusión y accesorios.</p>
+
+              <div class="price"><b>$64.900</b><s>$81.100</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="taladro-650w">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20taladro-650w" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Amoladora Angular 4 1/2" 850W -->
+
+          <article class="promo" data-id="amoladora-4-1-2" data-category="herramienta-seguridad">
+
+            <span class="tag">Oferta</span>
+
+            <div class="ph">
+
+              <img src="img/productos/amoladora-4-1-2.jpg" alt="Amoladora Angular 4 1/2" 850W" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
+
+              <h3>Amoladora Angular 4 1/2" 850W</h3>
+
+              <p class="desc">Diseño ergonómico, traba de eje y guarda de protección ajustable contra chispas. 11000 RPM.</p>
+
+              <div class="price"><b>$58.900</b><s>$69.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="amoladora-4-1-2">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20amoladora-4-1-2" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Casco de Seguridad Industrial Homologado -->
+
+          <article class="promo" data-id="casco-seguridad" data-category="herramienta-seguridad">
+
+            <span class="tag">-22%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/casco-seguridad.jpg" alt="Casco de Seguridad Industrial Homologado" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
+
+              <h3>Casco de Seguridad Industrial Homologado</h3>
+
+              <p class="desc">Casco de polietileno de alta densidad con arnés a cremallera regulable y banda antisudor.</p>
+
+              <div class="price"><b>$8.500</b><s>$11.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="casco-seguridad">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20casco-seguridad" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Antiparras de Seguridad Anti-Empaño UV400 -->
+
+          <article class="promo" data-id="antiparras-seguridad" data-category="herramienta-seguridad">
+
+            <span class="tag">-23%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/antiparras-seguridad.jpg" alt="Antiparras de Seguridad Anti-Empaño UV400" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
+
+              <h3>Antiparras de Seguridad Anti-Empaño UV400</h3>
+
+              <p class="desc">Visor envolvente de policarbonato con patillas ajustables y máxima resistencia a impactos.</p>
+
+              <div class="price"><b>$4.200</b><s>$5.500</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="antiparras-seguridad">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20antiparras-seguridad" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Arnés de Seguridad Integral Anticaídas -->
+
+          <article class="promo" data-id="arnes-seguridad" data-category="herramienta-seguridad">
+
+            <span class="tag">Seguridad</span>
+
+            <div class="ph">
+
+              <img src="img/productos/arnes-seguridad.jpg" alt="Arnés de Seguridad Integral Anticaídas" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Herramienta Seguridad</span></div>
+
+              <h3>Arnés de Seguridad Integral Anticaídas</h3>
+
+              <p class="desc">Con toma dorsal y frontal para trabajos en altura. Cintas de poliéster de alta tenacidad homologadas.</p>
+
+              <div class="price"><b>$34.500</b><s>$42.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="arnes-seguridad">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20arnes-seguridad" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Combo Dúo Power: Taladro + Amoladora -->
+
+          <article class="promo" data-id="combo-duo-power" data-category="mayorista-combos">
+
+            <span class="tag">-19%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/combo-duo-power.jpg" alt="Combo Dúo Power: Taladro + Amoladora" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Mayorista Combos</span></div>
+
+              <h3>Combo Dúo Power: Taladro + Amoladora</h3>
+
+              <p class="desc">Kit profesional completo: Taladro percutor 650W + Amoladora 850W con maletín y 10 discos de corte de regalo.</p>
+
+              <div class="price"><b>$109.900</b><s>$135.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-duo-power">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20combo-duo-power" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Combo Obra: Carretilla + Cuchara + Nivel + 3 Baldes -->
+
+          <article class="promo" data-id="combo-albanileria" data-category="mayorista-combos">
+
+            <span class="tag">Pack Obra</span>
+
+            <div class="ph">
+
+              <img src="img/productos/combo-albanileria.jpg" alt="Combo Obra: Carretilla + Cuchara + Nivel + 3 Baldes" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Mayorista Combos</span></div>
+
+              <h3>Combo Obra: Carretilla + Cuchara + Nivel + 3 Baldes</h3>
+
+              <p class="desc">Kit mayorista para construcción: Carretilla chapa reforzada 80L + cuchara forjada + nivel de mano + baldes de albañil.</p>
+
+              <div class="price"><b>$78.000</b><s>$94.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-albanileria">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20combo-albanileria" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Pack Mayorista Discos de Corte 115mm x 50u -->
+
+          <article class="promo" data-id="pack-discos-corte" data-category="mayorista-combos">
+
+            <span class="tag">Mayorista</span>
+
+            <div class="ph">
+
+              <img src="img/productos/pack-discos-corte.jpg" alt="Pack Mayorista Discos de Corte 115mm x 50u" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Mayorista Combos</span></div>
+
+              <h3>Pack Mayorista Discos de Corte 115mm x 50u</h3>
+
+              <p class="desc">Caja cerrada de 50 discos de corte ultrafinos 1mm para amoladora angular de 4 1/2". Máxima durabilidad.</p>
+
+              <div class="price"><b>$32.000</b><s>$41.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="pack-discos-corte">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20pack-discos-corte" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- Combo Electricista Pro: Pasacable + Pinza + Pelacables -->
+
+          <article class="promo" data-id="combo-electricista" data-category="mayorista-combos">
+
+            <span class="tag">-20%</span>
+
+            <div class="ph">
+
+              <img src="img/productos/combo-electricista.jpg" alt="Combo Electricista Pro: Pasacable + Pinza + Pelacables" loading="lazy">
+
+            </div>
+
+            <div class="body">
+
+              <div class="body-header"><span class="category-tag">Mayorista Combos</span></div>
+
+              <h3>Combo Electricista Pro: Pasacable + Pinza + Pelacables</h3>
+
+              <p class="desc">Cinta pasacable de acero 20m + Pinza universal aislada 1000V + Pelacables automático + Buscapolo digital.</p>
+
+              <div class="price"><b>$49.900</b><s>$62.000</s></div>
+
+              <div class="card-actions">
+
+                <button class="btn-add-cart" data-action="add-cart" data-product-id="combo-electricista">Sumar al pedido</button>
+
+                <a class="btn-wa-single" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20combo-electricista" target="_blank" rel="noopener">
+
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer>
+
+    <div class="wrap">
+
+      <div><b>EL FERRETERO</b><br>Tu ferretero de confianza · San Martín 2395, Río Cuarto, Córdoba · Cel: 358 423-8976</div>
+
+      <div class="footer-badges"><span>Envíos a todo el país</span></div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- Drawer de carrito -->
+
+    <!-- ==================== DRAWER DEL CARRITO / COTIZADOR GLOBAL ==================== -->
+
+  <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras y pedidos">
+
+    <div class="cart-header">
+
+      <h3>
+
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+          <circle cx="9" cy="21" r="1"></circle>
+
+          <circle cx="20" cy="21" r="1"></circle>
+
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+
+        </svg>
+
+        Lista de Pedido
+
+      </h3>
+
+      <button class="btn-clear-cart" id="clearCartBtn" title="Vaciar toda la lista" style="display:none;">Vaciar</button>
+
+      <button class="btn-close-cart" id="closeCartBtn" aria-label="Cerrar lista">✕</button>
+
+    </div>
+
+
+
+    <!-- Lista dinámica de ítems con imágenes -->
+
+    <div class="cart-items" id="cartItemsList"></div>
+
+
+
+    <!-- Resumen y botón de envío a WhatsApp -->
+
+    <div class="cart-footer">
+
+      <div class="cart-total-row">
+
+        <span>Total estimado:</span>
+
+        <strong id="cartTotalAmount">$0</strong>
+
+      </div>
+
+      <div class="cart-delivery-opt">
+
+        <span class="delivery-label">Modalidad de entrega:</span>
+
+        <label>
+
+          <input type="radio" name="cartDelivery" value="Retiro en sucursal (San Martín 2395)" checked>
+
+          <span>🏪 Retiro en local (San Martín 2395)</span>
+
+        </label>
+
+        <label>
+
+          <input type="radio" name="cartDelivery" value="Envío a domicilio en Río Cuarto">
+
+          <span>🚚 Envío a domicilio en Río Cuarto</span>
+
+        </label>
+
+        <label>
+
+          <input type="radio" name="cartDelivery" value="Envío a todo el país">
+
+          <span>📦 Envío al interior del país</span>
+
+        </label>
+
+        <input type="text" id="cartClientName" class="cart-client-name" placeholder="Tu nombre o empresa (opcional)...">
+
+      </div>
+
+      <p class="cart-disclaimer">Al pulsar el botón se abrirá WhatsApp con el pedido desglosado listo para coordinar con nosotros.</p>
+
+      <button class="btn btn-full" id="cartCheckoutWa">Enviar pedido por WhatsApp</button>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- Botón WhatsApp -->
+
+  <a class="wa" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20consultar%20por%20Productos" target="_blank" rel="noopener noreferrer" data-wa aria-label="WhatsApp">
+
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.5 11.5 0 0 1-4.8-4.2c-.4-.5-1.2-1.6-1.2-3s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.2z"/></svg>
+
+  </a>
+
+
+
+  <script src="js/app.js?v=2.2"></script>
+
+</body>
+
+</html>
+

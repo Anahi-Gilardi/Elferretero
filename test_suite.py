@@ -90,6 +90,10 @@ for page in PAGES:
             check(f"{page} carga app.js", 'js/app.js' in content)
             check(f"{page} tiene telefono 358 423-8976", '358 423-8976' in content or '3584238976' in content)
             check(f"{page} tiene direccion San Martin 2395", 'San Martín 2395' in content or 'San Martin 2395' in content)
+            if page not in ["contacto.html"]:
+                check(f"{page} tiene data-category en productos", 'data-category=' in content)
+            if page not in ["index.html", "contacto.html"]:
+                check(f"{page} tiene category-chips de navegacion", 'category-chips' in content)
 
 # 2. Validación de Imágenes de Productos y Sucursal
 print("\n[2] Verificando Integridad de Imágenes (21 Productos + Banners)...")
@@ -188,6 +192,30 @@ try:
         check("GET /api/products?category=electricidad responde HTTP 200", resp.status == 200)
         data = json.loads(resp.read().decode("utf-8"))
         check("GET /api/products?category=electricidad filtra 4 items", data.get("total") == 4)
+
+    # Test /api/products?category=limpieza
+    with urllib.request.urlopen(f"{BASE_URL}/api/products?category=limpieza") as resp:
+        check("GET /api/products?category=limpieza responde HTTP 200", resp.status == 200)
+        data = json.loads(resp.read().decode("utf-8"))
+        check("GET /api/products?category=limpieza filtra 4 items", data.get("total") == 4)
+
+    # Test /api/products?category=herramientas
+    with urllib.request.urlopen(f"{BASE_URL}/api/products?category=herramientas") as resp:
+        check("GET /api/products?category=herramientas responde HTTP 200", resp.status == 200)
+        data = json.loads(resp.read().decode("utf-8"))
+        check("GET /api/products?category=herramientas filtra 5 items", data.get("total") == 5)
+
+    # Test /api/products?category=libros
+    with urllib.request.urlopen(f"{BASE_URL}/api/products?category=libros") as resp:
+        check("GET /api/products?category=libros responde HTTP 200", resp.status == 200)
+        data = json.loads(resp.read().decode("utf-8"))
+        check("GET /api/products?category=libros filtra 4 items", data.get("total") == 4)
+
+    # Test /api/products?category=combos
+    with urllib.request.urlopen(f"{BASE_URL}/api/products?category=combos") as resp:
+        check("GET /api/products?category=combos responde HTTP 200", resp.status == 200)
+        data = json.loads(resp.read().decode("utf-8"))
+        check("GET /api/products?category=combos filtra 4 items", data.get("total") == 4)
 
     # Test /api/products?q=amoladora
     with urllib.request.urlopen(f"{BASE_URL}/api/products?q=amoladora") as resp:

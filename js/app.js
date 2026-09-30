@@ -464,18 +464,79 @@
   }
 
   /* ==========================================================================
-     5. BUSCADOR EN VIVO DE PRODUCTOS CON CONTADOR REACTIVO
+     5. BUSCADOR EN VIVO Y FILTRADO POR CATEGORÍAS REACTIVO
      ========================================================================== */
+  const CATEGORY_ALIASES = {
+    "limpieza": "mantenimiento-limpieza",
+    "mantenimiento": "mantenimiento-limpieza",
+    "mantenimiento-limpieza": "mantenimiento-limpieza",
+    "hogar": "mantenimiento-limpieza",
+    "plomeria": "mantenimiento-limpieza",
+    "pintureria": "mantenimiento-limpieza",
+    "electricidad": "electricidad",
+    "electrico": "electricidad",
+    "electricos": "electricidad",
+    "electrica": "electricidad",
+    "electricas": "electricidad",
+    "iluminacion": "electricidad",
+    "cables": "electricidad",
+    "herramientas": "herramienta-seguridad",
+    "herramienta": "herramienta-seguridad",
+    "seguridad": "herramienta-seguridad",
+    "herramienta-seguridad": "herramienta-seguridad",
+    "manuales": "herramienta-seguridad",
+    "construccion": "herramienta-seguridad",
+    "epp": "herramienta-seguridad",
+    "libros": "libros-ebook",
+    "libro": "libros-ebook",
+    "ebook": "libros-ebook",
+    "ebooks": "libros-ebook",
+    "libros-ebook": "libros-ebook",
+    "mayorista": "mayorista-combos",
+    "combos": "mayorista-combos",
+    "combo": "mayorista-combos",
+    "packs": "mayorista-combos",
+    "obra": "mayorista-combos",
+    "mayorista-combos": "mayorista-combos"
+  };
+
+  const CATEGORY_NAMES = {
+    "todos": "todas las categorías",
+    "mantenimiento-limpieza": "Mantenimiento y Limpieza",
+    "electricidad": "Electricidad",
+    "libros-ebook": "Libros / E-Book",
+    "herramienta-seguridad": "Herramienta Seguridad",
+    "mayorista-combos": "Mayorista Combos"
+  };
+
+  function normalizeCategory(cat) {
+    if (!cat) return 'todos';
+    const c = cat.toLowerCase().trim();
+    return CATEGORY_ALIASES[c] || c;
+  }
+
   function initLiveSearch() {
     const input = document.getElementById('catalogSearch');
-    if (!input) return;
-
     const grid = document.querySelector('.grid');
     if (!grid) return;
 
+    let activeCategory = 'todos';
+
+    // Leer parámetros de URL si existen (soporta ?categoria=electricidad o #herramientas)
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlCat = urlParams.get('categoria') || urlParams.get('category') || urlParams.get('rubro') || window.location.hash.replace('#', '');
+    if (urlCat) {
+      activeCategory = normalizeCategory(urlCat);
+    }
+
+    const urlQ = urlParams.get('q') || urlParams.get('buscar');
+    if (urlQ && input) {
+      input.value = urlQ;
+    }
+
     // Crear contador dinámico si no existe
     let counterEl = document.getElementById('catalogCounter');
-    if (!counterEl) {
+    if (!counterEl && input) {
       counterEl = document.createElement('div');
       counterEl.id = 'catalogCounter';
       counterEl.style.cssText = 'margin-bottom: 16px; font-weight: 600; color: var(--muted); font-size: 0.95rem;';
@@ -490,33 +551,90 @@
       noResultsEl.className = 'catalog-empty';
       noResultsEl.style.display = 'none';
       noResultsEl.innerHTML = `
-        <p>No se encontraron productos para tu búsqueda.</p>
+        <p>No se encontraron productos para tu selección o búsqueda.</p>
         <button class="btn btn-secondary btn-sm" id="resetSearchBtn">Ver todos los productos</button>
       `;
       grid.parentNode.insertBefore(noResultsEl, grid.nextSibling);
-      const resetBtn = document.getElementById('resetSearchBtn');
-      if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-          input.value = '';
-          input.dispatchEvent(new Event('input'));
-          input.focus();
-        });
-      }
     }
 
     const articles = grid.querySelectorAll('.promo');
     const totalCount = articles.length;
 
+    // Vincular chips de categoría interactivos (si existen en la página)
+    const chipContainer = document.querySelector('.category-chips');
+    const chips = chipContainer ? chipContainer.querySelectorAll('.chip') : [];
+
+    function updateActiveChipUI() {
+      chips.forEach(chip => {
+        const catAttr = chip.getAttribute('data-category') || '';
+        const chipCat = normalizeCategory(catAttr);
+        if (chipCat === activeCategory) {
+          chip.classList.add('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+    }
+
+    if (chips.length > 0) {
+      chips.forEach(chip => {
+        chip.addEventListener('click', (e) => {
+          // Filtrar en la misma página de catálogo si hay artículos
+          const catAttr = chip.getAttribute('data-category') || '';
+          if (catAttr || document.getElementById('catalogSearch')) {
+            e.preventDefault();
+            activeCategory = normalizeCategory(catAttr);
+            updateActiveChipUI();
+            applyFilter();
+
+            // Sincronizar URL sin recargar
+            try {
+              const url = new URL(window.location);
+              if (activeCategory === 'todos') {
+                url.searchParams.delete('categoria');
+              } else {
+                url.searchParams.set('categoria', activeCategory);
+              }
+              window.history.replaceState({}, '', url);
+            } catch (err) {}
+          }
+        });
+      });
+      updateActiveChipUI();
+    }
+
+    const resetBtn = document.getElementById('resetSearchBtn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (input) input.value = '';
+        activeCategory = 'todos';
+        updateActiveChipUI();
+        applyFilter();
+        try {
+          const url = new URL(window.location);
+          url.searchParams.delete('categoria');
+          url.searchParams.delete('q');
+          window.history.replaceState({}, '', url);
+        } catch (err) {}
+        if (input) input.focus();
+      });
+    }
+
     function applyFilter() {
-      const q = input.value.toLowerCase().trim();
+      const q = input ? input.value.toLowerCase().trim() : '';
       let matchedCount = 0;
 
       articles.forEach(art => {
+        const artCat = normalizeCategory(art.getAttribute('data-category') || '');
         const title = art.querySelector('h3')?.textContent.toLowerCase() || '';
         const desc = art.querySelector('.desc')?.textContent.toLowerCase() || '';
         const tag = art.querySelector('.category-tag')?.textContent.toLowerCase() || '';
+        const normTag = normalizeCategory(tag);
 
-        if (!q || title.includes(q) || desc.includes(q) || tag.includes(q)) {
+        const matchesCat = (activeCategory === 'todos') || (artCat === activeCategory) || (normTag === activeCategory);
+        const matchesQuery = !q || title.includes(q) || desc.includes(q) || tag.includes(q) || artCat.includes(q);
+
+        if (matchesCat && matchesQuery) {
           art.style.display = '';
           matchedCount++;
         } else {
@@ -525,8 +643,13 @@
       });
 
       if (counterEl) {
-        if (q) {
-          counterEl.textContent = `Mostrando ${matchedCount} de ${totalCount} productos`;
+        const catLabel = CATEGORY_NAMES[activeCategory] || activeCategory;
+        if (q && activeCategory !== 'todos') {
+          counterEl.textContent = `Mostrando ${matchedCount} de ${totalCount} productos en ${catLabel} para "${q}"`;
+        } else if (q) {
+          counterEl.textContent = `Mostrando ${matchedCount} de ${totalCount} productos para "${q}"`;
+        } else if (activeCategory !== 'todos') {
+          counterEl.textContent = `Mostrando ${matchedCount} productos en ${catLabel}`;
         } else {
           counterEl.textContent = `Mostrando los ${totalCount} productos del catálogo`;
         }
@@ -537,7 +660,9 @@
       }
     }
 
-    input.addEventListener('input', applyFilter);
+    if (input) {
+      input.addEventListener('input', applyFilter);
+    }
     applyFilter();
   }
 

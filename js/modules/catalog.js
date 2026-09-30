@@ -2,7 +2,7 @@
  * Módulo de Catálogo, Búsqueda y Filtros de Productos
  */
 import { PRODUCTOS, SVG_PLACEHOLDER } from '../data/products.js';
-import { CATEGORIAS } from '../data/categories.js';
+import { CATEGORIAS, normalizarCategoriaId } from '../data/categories.js';
 import { generarWaUrl } from '../data/config.js';
 import { addToCart } from './cart.js';
 
@@ -42,11 +42,12 @@ function renderCategoryChips() {
 }
 
 export function filterByCategory(categoryId) {
-  activeCategory = categoryId;
+  activeCategory = normalizarCategoriaId(categoryId);
   const container = document.getElementById('categoryChips');
   if (container) {
     container.querySelectorAll('.chip').forEach(c => {
-      if (c.getAttribute('data-category') === categoryId) {
+      const chipCat = normalizarCategoriaId(c.getAttribute('data-category'));
+      if (chipCat === activeCategory) {
         c.classList.add('active');
       } else {
         c.classList.remove('active');
@@ -61,7 +62,8 @@ function renderProducts() {
   if (!grid) return;
 
   const filtered = PRODUCTOS.filter(p => {
-    const matchesCategory = activeCategory === 'todos' || p.categoriaId === activeCategory;
+    const prodCategory = normalizarCategoriaId(p.categoriaId);
+    const matchesCategory = activeCategory === 'todos' || prodCategory === activeCategory;
     const matchesQuery = !searchQuery || 
       p.nombre.toLowerCase().includes(searchQuery.toLowerCase()) || 
       p.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||

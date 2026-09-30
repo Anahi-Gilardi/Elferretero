@@ -342,10 +342,45 @@ module.exports = function handler(req, res) {
   // Filtrado por categoría y/o texto
   let results = PRODUCTOS;
 
-  if (category) {
+  // Mapeo flexible de categorías y sinónimos (permite "herramientas", "limpieza", "electricidad", etc.)
+  const CATEGORY_MAP = {
+    "electricidad": "electricidad",
+    "electrico": "electricidad",
+    "electricos": "electricidad",
+    "electrica": "electricidad",
+    "electricas": "electricidad",
+    "iluminacion": "electricidad",
+    "limpieza": "mantenimiento-limpieza",
+    "mantenimiento": "mantenimiento-limpieza",
+    "mantenimiento-limpieza": "mantenimiento-limpieza",
+    "hogar": "mantenimiento-limpieza",
+    "herramienta": "herramienta-seguridad",
+    "herramientas": "herramienta-seguridad",
+    "seguridad": "herramienta-seguridad",
+    "herramienta-seguridad": "herramienta-seguridad",
+    "epp": "herramienta-seguridad",
+    "libros": "libros-ebook",
+    "libro": "libros-ebook",
+    "ebook": "libros-ebook",
+    "ebooks": "libros-ebook",
+    "libros-ebook": "libros-ebook",
+    "manuales": "libros-ebook",
+    "mayorista": "mayorista-combos",
+    "mayoristas": "mayorista-combos",
+    "combos": "mayorista-combos",
+    "combo": "mayorista-combos",
+    "packs": "mayorista-combos",
+    "obra": "mayorista-combos",
+    "mayorista-combos": "mayorista-combos"
+  };
+
+  const targetCategory = CATEGORY_MAP[category] || category;
+
+  if (targetCategory) {
     results = results.filter(p => 
-      p.categoriaId.toLowerCase() === category || 
-      p.categoriaNombre.toLowerCase().includes(category)
+      p.categoriaId.toLowerCase() === targetCategory || 
+      p.categoriaNombre.toLowerCase().includes(category) ||
+      p.categoriaNombre.toLowerCase().includes(targetCategory)
     );
   }
 
