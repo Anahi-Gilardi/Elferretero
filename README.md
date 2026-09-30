@@ -1,6 +1,10 @@
-# 🛠️ El Ferretero - Sitio Web Modular
+# 🛠️ El Ferretero - Sitio Web Comercial
 
-Sitio web comercial para **"El Ferretero"** (Río Cuarto, Córdoba). Diseñado con arquitectura modular en CSS, JavaScript ES Modules y componentes desacoplados.
+Sitio web oficial para **"El Ferretero"** (San Martín 2395, Río Cuarto, Córdoba). Diseñado con arquitectura responsive, catálogo con fotografías reales, cotizador y carrito sincronizado con WhatsApp, estado de atención en tiempo real y optimización SEO.
+
+🌐 **Sitio en Producción (Vercel):** [https://el-ferretero-riocuarto.vercel.app](https://el-ferretero-riocuarto.vercel.app)  
+📱 **WhatsApp de Atención:** +54 9 358 423-8976  
+📍 **Ubicación:** San Martín 2395, Río Cuarto, Córdoba, Argentina
 
 ---
 

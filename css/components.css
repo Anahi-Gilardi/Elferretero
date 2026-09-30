@@ -1417,3 +1417,125 @@ footer .footer-badges {
   gap: 12px;
 }
 
+/* ==========================================================================
+   9. Cart Drawer Upgrades: Clear button, delivery options & customer input
+   ========================================================================== */
+.btn-clear-cart {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #FFFFFF;
+  font-family: var(--head);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-clear-cart:hover {
+  background: #E53935;
+  border-color: #E53935;
+  color: #FFFFFF;
+}
+
+.cart-delivery-opt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.cart-delivery-opt span.delivery-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.cart-delivery-opt label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.cart-delivery-opt input[type="radio"] {
+  accent-color: var(--orange);
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.cart-client-name {
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-alt);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.cart-client-name:focus {
+  border-color: var(--orange);
+}
+
+/* ==========================================================================
+   10. Floating WhatsApp Pulse Animation
+   ========================================================================== */
+@keyframes waPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.wa {
+  animation: waPulse 2.8s infinite;
+}
+
+/* ==========================================================================
+   11. Quote & Contact Form Cards
+   ========================================================================== */
+.quote-form-card {
+  margin-top: 32px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.quote-form-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.quote-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 640px) {
+  .quote-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+

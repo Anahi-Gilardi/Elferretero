@@ -9,6 +9,62 @@
   <!-- Favicon SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
 
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="El Ferretero | Ferretería en Río Cuarto, Córdoba">
+  <meta property="og:description" content="Tu ferretero de confianza en San Martín 2395, Río Cuarto. Herramientas eléctricas y manuales, electricidad, limpieza y combos mayoristas. Cel: 358 423-8976.">
+  <meta property="og:image" content="https://el-ferretero-riocuarto.vercel.app/img/banners/hero-ferreteria.jpg">
+  <meta property="og:url" content="https://el-ferretero-riocuarto.vercel.app/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="El Ferretero · San Martín 2395, Río Cuarto">
+  <meta name="twitter:description" content="Catálogo completo de herramientas, cotizador de materiales y pedidos directos por WhatsApp al 358 423-8976.">
+  <meta name="twitter:image" content="https://el-ferretero-riocuarto.vercel.app/img/banners/hero-ferreteria.jpg">
+
+  <!-- Schema.org HardwareStore Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HardwareStore",
+    "name": "El Ferretero",
+    "image": "https://el-ferretero-riocuarto.vercel.app/img/local/fachada-local.jpg",
+    "telephone": "+543584238976",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "San Martín 2395",
+      "addressLocality": "Río Cuarto",
+      "addressRegion": "Córdoba",
+      "addressCountry": "AR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -33.12356,
+      "longitude": -64.36445
+    },
+    "url": "https://el-ferretero-riocuarto.vercel.app",
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:30",
+        "closes": "12:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "16:00",
+        "closes": "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:30",
+        "closes": "13:00"
+      }
+    ]
+  }
+  </script>
+
   <!-- Google Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -257,6 +313,34 @@
         </div>
       </div>
     </section>
+
+    <!-- BANNER DE ATENCIÓN A GREMIOS Y PRESUPUESTOS DE OBRA -->
+    <section class="quote-banner-section" style="background: var(--black); color: #fff; padding: 50px 0; border-top: 3px solid var(--orange);">
+      <div class="wrap" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center;">
+        <div>
+          <span style="display: inline-block; background: var(--orange); color: #141414; font-family: var(--head); font-weight: 800; font-size: 0.85rem; padding: 4px 10px; border-radius: 3px; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.05em;">Atención a Profesionales y Empresas</span>
+          <h2 style="color: #fff; font-size: 2.2rem; margin-bottom: 12px;">¿Tenés una obra o proyecto en marcha?</h2>
+          <p style="color: #b5b5b5; font-size: 1.1rem; line-height: 1.5; margin-bottom: 20px;">Armamos presupuestos a medida para constructores, electricistas, plomeros y talleres. Facturación A y B, acopio de materiales y entrega directa en obra en Río Cuarto y la región.</p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a class="btn" href="https://wa.me/5493584238976?text=Hola!%20Quiero%20solicitar%20un%20presupuesto%20para%20una%20obra" target="_blank" rel="noopener noreferrer">
+              <span>Pedir cotización de obra</span>
+            </a>
+            <a class="btn ghost" href="contacto.html" style="border-color: #fff; color: #fff;">
+              <span>Ver horarios y sucursal</span>
+            </a>
+          </div>
+        </div>
+        <div style="background: #1c1c1c; border: 1px solid #333; border-radius: 8px; padding: 24px;">
+          <h3 style="color: var(--orange); font-size: 1.3rem; margin-bottom: 12px;">Ventajas para Gremios</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; color: #ddd; font-size: 0.95rem;">
+            <li>✓ <b>Precios especiales</b> por volumen en bulto cerrado</li>
+            <li>✓ <b>Cuenta corriente</b> y facturación formal para empresas</li>
+            <li>✓ <b>Asesoramiento técnico</b> con especialistas de mostrador</li>
+            <li>✓ <b>Logística rápida</b> con flete directo a pie de obra</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ==================== PIE DE PÁGINA ==================== -->
@@ -272,7 +356,7 @@
     </div>
   </footer>
 
-  <!-- ==================== DRAWER DEL CARRITO / COTIZADOR GLOBAL ==================== -->
+    <!-- ==================== DRAWER DEL CARRITO / COTIZADOR GLOBAL ==================== -->
   <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
   <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras y pedidos">
     <div class="cart-header">
@@ -284,10 +368,11 @@
         </svg>
         Lista de Pedido
       </h3>
+      <button class="btn-clear-cart" id="clearCartBtn" title="Vaciar toda la lista" style="display:none;">Vaciar</button>
       <button class="btn-close-cart" id="closeCartBtn" aria-label="Cerrar lista">✕</button>
     </div>
 
-    <!-- Lista dinámica de ítems -->
+    <!-- Lista dinámica de ítems con imágenes -->
     <div class="cart-items" id="cartItemsList"></div>
 
     <!-- Resumen y botón de envío a WhatsApp -->
@@ -296,7 +381,23 @@
         <span>Total estimado:</span>
         <strong id="cartTotalAmount">$0</strong>
       </div>
-      <p class="cart-disclaimer">Al pulsar el botón se abrirá WhatsApp con el listado detallado listo para consultar disponibilidad y confirmar con nuestro equipo.</p>
+      <div class="cart-delivery-opt">
+        <span class="delivery-label">Modalidad de entrega:</span>
+        <label>
+          <input type="radio" name="cartDelivery" value="Retiro en sucursal (San Martín 2395)" checked>
+          <span>🏪 Retiro en local (San Martín 2395)</span>
+        </label>
+        <label>
+          <input type="radio" name="cartDelivery" value="Envío a domicilio en Río Cuarto">
+          <span>🚚 Envío a domicilio en Río Cuarto</span>
+        </label>
+        <label>
+          <input type="radio" name="cartDelivery" value="Envío a todo el país">
+          <span>📦 Envío al interior del país</span>
+        </label>
+        <input type="text" id="cartClientName" class="cart-client-name" placeholder="Tu nombre o empresa (opcional)...">
+      </div>
+      <p class="cart-disclaimer">Al pulsar el botón se abrirá WhatsApp con el pedido desglosado listo para coordinar con nosotros.</p>
       <button class="btn btn-full" id="cartCheckoutWa">Enviar pedido por WhatsApp</button>
     </div>
   </aside>

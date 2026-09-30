@@ -181,15 +181,48 @@
   </footer>
 
   <!-- Drawer de carrito -->
+    <!-- ==================== DRAWER DEL CARRITO / COTIZADOR GLOBAL ==================== -->
   <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
-  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras">
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras y pedidos">
     <div class="cart-header">
-      <h3>Lista de Pedido</h3>
-      <button class="btn-close-cart" id="closeCartBtn">✕</button>
+      <h3>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        Lista de Pedido
+      </h3>
+      <button class="btn-clear-cart" id="clearCartBtn" title="Vaciar toda la lista" style="display:none;">Vaciar</button>
+      <button class="btn-close-cart" id="closeCartBtn" aria-label="Cerrar lista">✕</button>
     </div>
+
+    <!-- Lista dinámica de ítems con imágenes -->
     <div class="cart-items" id="cartItemsList"></div>
+
+    <!-- Resumen y botón de envío a WhatsApp -->
     <div class="cart-footer">
-      <div class="cart-total-row"><span>Total estimado:</span><strong id="cartTotalAmount">$0</strong></div>
+      <div class="cart-total-row">
+        <span>Total estimado:</span>
+        <strong id="cartTotalAmount">$0</strong>
+      </div>
+      <div class="cart-delivery-opt">
+        <span class="delivery-label">Modalidad de entrega:</span>
+        <label>
+          <input type="radio" name="cartDelivery" value="Retiro en sucursal (San Martín 2395)" checked>
+          <span>🏪 Retiro en local (San Martín 2395)</span>
+        </label>
+        <label>
+          <input type="radio" name="cartDelivery" value="Envío a domicilio en Río Cuarto">
+          <span>🚚 Envío a domicilio en Río Cuarto</span>
+        </label>
+        <label>
+          <input type="radio" name="cartDelivery" value="Envío a todo el país">
+          <span>📦 Envío al interior del país</span>
+        </label>
+        <input type="text" id="cartClientName" class="cart-client-name" placeholder="Tu nombre o empresa (opcional)...">
+      </div>
+      <p class="cart-disclaimer">Al pulsar el botón se abrirá WhatsApp con el pedido desglosado listo para coordinar con nosotros.</p>
       <button class="btn btn-full" id="cartCheckoutWa">Enviar pedido por WhatsApp</button>
     </div>
   </aside>
