@@ -1,0 +1,22 @@
+{
+  "name": "el-ferretero",
+  "version": "2.2.0",
+  "description": "Sitio web y plataforma de catálogo interactivo para Ferretería El Ferretero - San Martín 2395, Río Cuarto, Córdoba",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "python test_suite.py"
+  },
+  "keywords": [
+    "ferreteria",
+    "rio-cuarto",
+    "cordoba",
+    "ecommerce",
+    "catalogo",
+    "pwa",
+    "responsive"
+  ],
+  "author": "El Ferretero Río Cuarto",
+  "license": "MIT"
+}

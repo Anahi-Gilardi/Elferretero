@@ -1,101 +1,124 @@
-# 🛠️ El Ferretero - Sitio Web Comercial
+# 🛠️ El Ferretero - Plataforma Comercial & Catálogo Digital Fullstack
 
-Sitio web oficial para **"El Ferretero"** (San Martín 2395, Río Cuarto, Córdoba). Diseñado con arquitectura responsive, catálogo con fotografías reales, cotizador y carrito sincronizado con WhatsApp, estado de atención en tiempo real y optimización SEO.
+Sitio web oficial y plataforma de pedidos para **"El Ferretero"** (San Martín 2395, Río Cuarto, Córdoba). Diseñado con arquitectura responsive de alta fidelidad para teléfonos móviles, tablets y PCs, motor PWA offline, backend con API REST (Vercel Serverless Functions + Node.js nativo), cotizador interactivo directo a WhatsApp y catálogo con fotografías reales.
 
-🌐 **Sitio en Producción (Vercel):** [https://el-ferretero-riocuarto.vercel.app](https://el-ferretero-riocuarto.vercel.app)  
-📱 **WhatsApp de Atención:** +54 9 358 423-8976  
-📍 **Ubicación:** San Martín 2395, Río Cuarto, Córdoba, Argentina
+- 🌐 **Sitio en Producción (Vercel):** [https://el-ferretero-riocuarto.vercel.app](https://el-ferretero-riocuarto.vercel.app)
+- 📱 **WhatsApp de Atención:** [+54 9 358 423-8976](https://wa.me/5493584238976)
+- 📞 **Teléfono Sucursal:** [358 423-8976](tel:3584238976)
+- 📍 **Dirección:** San Martín 2395, Río Cuarto, Córdoba, Argentina
 
 ---
 
-## 📁 Estructura del Proyecto
+## 🚀 Inicio Rápido
+
+### En Windows:
+Simplemente haz doble clic en el archivo **`abrir-web.bat`**. Detectará automáticamente si dispones de Node.js o Python, levantará el servidor en `http://localhost:8000` y abrirá tu navegador.
+
+### Con Node.js (Servidor Fullstack con API REST):
+```bash
+npm start
+# o bien: node server.js
+```
+Abre en tu navegador: [http://localhost:8000](http://localhost:8000)
+
+### Con Python:
+```bash
+python -m http.server 8000
+```
+
+---
+
+## 🧪 Pruebas Automatizadas
+
+El proyecto incluye una suite integral de pruebas automatizadas que valida 99 puntos de control (integridad de páginas HTML, etiquetas viewport y PWA, todas las imágenes de productos y banners, respuestas HTTP 200, endpoints de API REST, filtros y cotizaciones):
+
+```bash
+npm test
+# o bien: python test_suite.py
+```
+
+---
+
+## 📱 Optimizaciones Multi-Dispositivo (Frontend)
+
+1. **Teléfonos Inteligentes (< 768px - iPhone, Samsung Galaxy, etc.):**
+   - Menú móvil deslizante de pantalla completa con backdrop táctil.
+   - Header ultra-compacto con botón de carrito ergonómico adaptado a pulgares.
+   - Grilla adaptable de 1 a 2 columnas en orientación horizontal (480px - 768px).
+   - Soporte nativo para *Safe Area Insets* (Dynamic Island y notch de iPhone).
+2. **Tablets (768px a 1024px - iPad, iPad Mini, Galaxy Tab):**
+   - Navegación optimizada con tipografía Barlow e interlineados proporcionados.
+   - Grilla de 3 columnas para navegación rápida de rubros.
+3. **Escritorio y Monitores Ultra-Wide (> 1200px):**
+   - Grilla de 4 columnas para máxima densidad informativa de herramientas.
+   - Hero banner cinematográfico con imagen real de la tienda.
+4. **PWA (Progressive Web App):**
+   - [`manifest.json`](manifest.json) con iconos en alta resolución e instalación en pantalla de inicio.
+   - [`sw.js`](sw.js) Service Worker con estrategia *stale-while-revalidate* y fallback offline.
+
+---
+
+## ⚡ Backend y API REST
+
+El backend es compatible tanto de manera local (`server.js`) como en la nube con **Vercel Serverless Functions** (`api/`):
+
+| Endpoint | Método | Descripción |
+| :--- | :---: | :--- |
+| `/api/products` | `GET` | Devuelve el catálogo completo (21 productos). Admite `?category=` y `?q=`. |
+| `/api/health` | `GET` | Healthcheck y cálculo dinámico de apertura de sucursal en horario argentino (UTC-3). |
+| `/api/quote` | `POST` / `GET` | Valida ítems, calcula totales y devuelve el enlace estructurado de WhatsApp. |
+
+---
+
+## 📁 Estructura del Directorio
 
 ```
 el-ferretero/
 │
-├── index.html                   # Documento HTML principal
-├── README.md                    # Documentación y guía de uso
+├── index.html                   # Portada principal con buscador, banners y sucursal
+├── productos.html               # Catálogo completo con las 21 referencias comerciales
+├── contacto.html                # Formulario de cotizaciones y mapa de San Martín 2395
+├── electricidad.html            # Categoría: Cables IRAM, tableros y reflectores
+├── herramienta-seguridad.html   # Categoría: Taladros, amoladoras y EPP
+├── libros-ebook.html            # Categoría: Manuales técnicos y guías prácticas
+├── mantenimiento-limpieza.html  # Categoría: Hidrolavadoras, aspiradoras y escaleras
+├── mayorista-combos.html        # Categoría: Kits de obra, electricista y cajas
 │
-├── css/                         # Hojas de estilo modularizadas
-│   ├── variables.css            # Paleta de colores, tokens, tipografías y tema claro/oscuro
-│   ├── base.css                 # Resets, tipografía base y botones
-│   ├── components.css           # Header, Hero, Cards de producto, Grilla, Carrito y Modales
-│   └── responsive.css           # Reglas responsive para dispositivos móviles y tablets
+├── api/                         # Backend Vercel Serverless / Node REST API
+│   ├── products.js              # Endpoint de catálogo y filtros
+│   ├── quote.js                 # Generador de cotizaciones y enlace WhatsApp
+│   └── health.js                # Monitoreo de sucursal y salud del servidor
 │
-└── js/
-    ├── main.js                  # Punto de entrada y orquestador de inicialización
-    │
-    ├── data/                    # Capa de datos desacoplada (fácilmente editable)
-    │   ├── config.js            # Teléfonos, WhatsApp, dirección en Río Cuarto y horarios
-    │   ├── categories.js        # Rubros con sus iconos SVG vectoriales
-    │   └── products.js          # Catálogo de productos, ofertas y precios
-    │
-    └── modules/                 # Componentes funcionales
-        ├── theme.js             # Modo Oscuro / Claro con persistencia en localStorage
-        ├── header.js            # Barra de navegación sticky y menú móvil
-        ├── catalog.js           # Buscador en tiempo real y filtrado por rubros
-        ├── cart.js              # Carrito/Cotizador con cálculo y generación de pedido a WhatsApp
-        ├── store-status.js      # Indicador dinámico en vivo (🟢 Abierto / 🔴 Cerrado)
-        └── quote-modal.js       # Modal para solicitud de presupuestos de obra
+├── css/                         # Hojas de estilo modulares
+│   ├── variables.css            # Tokens de diseño, tema oscuro/claro
+│   ├── base.css                 # Reset y tipografía
+│   ├── components.css           # Componentes UI (header, cards, drawer, botones)
+│   └── responsive.css           # Reglas responsive de móviles, tablets y ultrawide
+│
+├── img/                         # Recursos gráficos reales
+│   ├── productos/               # 21 fotografías de estudio en proporción 4:3
+│   ├── banners/                 # Banner hero del salón de ventas
+│   └── local/                   # Fachada comercial de San Martín 2395
+│
+├── js/                          # Lógica del cliente
+│   ├── app.js                   # Motor global unificado con Service Worker
+│   ├── data/                    # Catálogo estático y configuración
+│   └── modules/                 # Módulos desacoplados
+│
+├── manifest.json                # Especificación PWA para móviles
+├── sw.js                        # Service Worker de almacenamiento en caché
+├── server.js                    # Servidor local Node.js sin dependencias
+├── vercel.json                  # Encabezados de seguridad y caché en el edge
+├── abrir-web.bat                # Lanzador en un clic para Windows
+└── test_suite.py                # Suite de pruebas automatizadas integrales (99 checks)
 ```
 
 ---
 
-## 🚀 Cómo Ejecutar el Proyecto
+## 🔒 Despliegue en Producción
 
-Dado que utiliza módulos nativos de JavaScript (`<script type="module">`), se recomienda abrirlo con cualquier servidor estático local:
-
-### Opción 1: Python (Recomendado)
-Abre una terminal en esta carpeta y ejecuta:
-```bash
-python -m http.server 8000
-```
-Luego abre tu navegador en: [http://localhost:8000](http://localhost:8000)
-
-### Opción 2: VS Code / Live Server
-Abre la carpeta en VS Code y haz clic derecho en `index.html` > **"Open with Live Server"**.
-
-### Opción 3: Node / NPX
-```bash
-npx serve .
-```
-
----
-
-## ⚙️ Cómo Personalizar Datos
-
-### 1. Cambiar teléfono, WhatsApp o dirección
-Edita el archivo `js/data/config.js`:
-```javascript
-export const CONFIG = {
-  whatsapp: "5493584238976",   // Código de país + código de área + número sin 0 ni 15
-  telefono: "358 423-8976",
-  direccion: "San Martín 2395, Río Cuarto, Córdoba",
-  // ...
-};
-```
-
-### 2. Agregar o editar productos
-Edita el archivo `js/data/products.js`:
-```javascript
-{
-  id: "mi-nuevo-producto",
-  nombre: "Nombre del Producto",
-  categoriaId: "electricas", // o manuales, pintureria, electricidad, plomeria, construccion
-  categoriaNombre: "Herramientas eléctricas",
-  desc: "Descripción de características técnicas.",
-  precio: 45000,
-  precioFormateado: "$45.000",
-  antes: "$52.000",
-  oferta: "-15%",
-  imagen: "ruta/a/la/imagen.jpg" // Si está vacío se usa el icono institucional
-}
-```
-
----
-
-## ✨ Características Destacadas
-- **Cotizador & Carrito por WhatsApp**: Permite a los clientes sumar herramientas a una lista y enviar un mensaje desglosado con subtotales y total con un solo clic.
-- **Estado de Atención en Tiempo Real**: Muestra automáticamente si el local está abierto o cerrado según los turnos de atención de Río Cuarto.
-- **Modo Claro / Oscuro**: Alternador intuitivo con persistencia en el navegador del usuario.
-- **Búsqueda Dinámica**: Búsqueda instantánea por palabra clave combinada con filtros de rubros.
+El proyecto está configurado para desplegarse instantáneamente en **Vercel** (`vercel.json`), incluyendo:
+- Encabezados de seguridad HTTP (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`).
+- Caché inmutable para imágenes (`max-age=31536000`).
+- URLs limpias (`cleanUrls: true`).
+- Dominio oficial de producción: [https://el-ferretero-riocuarto.vercel.app](https://el-ferretero-riocuarto.vercel.app)

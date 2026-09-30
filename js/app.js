@@ -619,6 +619,23 @@
     }[c]));
   }
 
+  /* ==========================================================================
+     9. REGISTRO DE SERVICE WORKER (PWA & SOPORTE OFFLINE)
+     ========================================================================== */
+  function initServiceWorker() {
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => {
+            console.log('El Ferretero Service Worker activo:', reg.scope);
+          })
+          .catch(err => {
+            console.warn('Service Worker no se pudo registrar:', err);
+          });
+      });
+    }
+  }
+
   function boot() {
     initTheme();
     initNavigation();
@@ -626,6 +643,7 @@
     initLiveSearch();
     initStoreStatus();
     syncBusinessInfo();
+    initServiceWorker();
   }
 
   if (document.readyState === 'loading') {

@@ -616,3 +616,71 @@ header {
     font-size: 1.9rem;
   }
 }
+
+/* ==========================================================================
+   5. OPTIMIZACIONES MULTIPANTALLA (PHONES, TABLETS & DESKTOPS)
+   ========================================================================== */
+/* Smartphones en orientación horizontal o pantallas medianas (480px a 768px) */
+@media (min-width: 480px) and (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+}
+
+/* Ajuste móvil para Hero Image Card y Banner de Gremios (< 768px) */
+@media (max-width: 768px) {
+  .hero-visual {
+    width: 100%;
+    align-items: center !important;
+    margin-top: 10px;
+  }
+
+  .hero-image-card {
+    max-width: 100% !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35) !important;
+  }
+
+  .hero-main-img {
+    height: 200px !important;
+  }
+
+  .quote-banner-section .wrap {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    text-align: left;
+  }
+
+  .quote-form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .cart-drawer {
+    max-width: 100% !important;
+  }
+
+  /* Ajuste de botones para dedo índice / pulgar */
+  .btn, .btn-add-cart, .btn-wa-single, .cart-toggle-btn {
+    touch-action: manipulation;
+  }
+}
+
+/* Monitores Ultra-Wide y Pantallas Grandes (> 1200px) */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 24px !important;
+  }
+
+  .hero .wrap {
+    grid-template-columns: 1.25fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .hero-main-img {
+    height: 300px;
+  }
+}
+
