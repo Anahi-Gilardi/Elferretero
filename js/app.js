@@ -12,10 +12,10 @@
     nombre: "El Ferretero",
     slogan: "Tu ferretero de confianza",
     ciudad: "Río Cuarto, Córdoba",
-    whatsapp: "5493580000000",
-    telefono: "0358 000-0000",
-    direccion: "Estado N° 1871, Río Cuarto, Córdoba",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Estado+1871+Rio+Cuarto+Cordoba",
+    whatsapp: "5493584238976",
+    telefono: "358 423-8976",
+    direccion: "San Martín 2395, Río Cuarto, Córdoba",
+    mapa: "https://www.google.com/maps/search/?api=1&query=San+Martin+2395+Rio+Cuarto+Cordoba",
     horarios: [
       { dia: "Lunes a viernes", horas: "8:30 a 12:30 y 16:00 a 20:00" },
       { dia: "Sábados", horas: "8:30 a 13:00" },
@@ -355,7 +355,7 @@
         const drawerFooter = document.createElement('div');
         drawerFooter.className = 'mobile-drawer-footer';
         drawerFooter.innerHTML = `
-          <a href="https://wa.me/5493580000000?text=Hola!%20Quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" class="drawer-wa-btn">
+          <a href="https://wa.me/5493584238976?text=Hola!%20Quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" class="drawer-wa-btn">
             💬 WhatsApp Directo
           </a>
           <span class="drawer-info-text">📍 Río Cuarto, Córdoba</span>

@@ -387,7 +387,52 @@ nav.nav-links > a.active::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 16px;
+  position: relative;
+}
+
+.hero-image-card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.hero-image-card:hover {
+  transform: translateY(-4px);
+}
+
+.hero-main-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-card-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-store-tag {
+  background: rgba(18, 18, 18, 0.88);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-family: var(--head);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border-left: 3px solid var(--orange);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .badge {

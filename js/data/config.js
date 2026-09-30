@@ -5,10 +5,10 @@ export const CONFIG = {
   nombre: "El Ferretero",
   slogan: "Tu ferretero de confianza",
   ciudad: "Río Cuarto, Córdoba",
-  whatsapp: "5493580000000",          // Número internacional sin '+' ni espacios
-  telefono: "0358 000-0000",
-  direccion: "Estado N° 1871, Río Cuarto, Córdoba",
-  mapa: "https://www.google.com/maps/search/?api=1&query=Estado+1871+Rio+Cuarto+Cordoba",
+  whatsapp: "5493584238976",          // Número internacional sin '+' ni espacios
+  telefono: "358 423-8976",
+  direccion: "San Martín 2395, Río Cuarto, Córdoba",
+  mapa: "https://www.google.com/maps/search/?api=1&query=San+Martin+2395+Rio+Cuarto+Cordoba",
   
   // Tabla de horarios visuales
   horarios: [

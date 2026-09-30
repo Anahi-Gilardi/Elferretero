@@ -33,7 +33,7 @@ export const PRODUCTOS = [
     precioFormateado: "$92.500",
     antes: "$108.900",
     oferta: "-15%",
-    imagen: ""
+    imagen: "img/productos/hidrolavadora-1400w.jpg"
   },
   {
     id: "aspiradora-20l",
@@ -45,7 +45,7 @@ export const PRODUCTOS = [
     precioFormateado: "$84.900",
     antes: "$99.000",
     oferta: "-14%",
-    imagen: ""
+    imagen: "img/productos/aspiradora-20l.jpg"
   },
   {
     id: "mopa-giratoria-360",
@@ -57,7 +57,7 @@ export const PRODUCTOS = [
     precioFormateado: "$21.400",
     antes: "$26.000",
     oferta: "-18%",
-    imagen: ""
+    imagen: "img/productos/mopa-giratoria-360.jpg"
   },
   {
     id: "escalera-aluminio-5",
@@ -69,7 +69,7 @@ export const PRODUCTOS = [
     precioFormateado: "$48.600",
     antes: "$56.000",
     oferta: "Oferta",
-    imagen: ""
+    imagen: "img/productos/escalera-aluminio-5.jpg"
   },
 
   /* --- ELECTRICIDAD --- */
@@ -83,7 +83,7 @@ export const PRODUCTOS = [
     precioFormateado: "$38.500",
     antes: "$45.000",
     oferta: "-15%",
-    imagen: ""
+    imagen: "img/productos/rollo-cable-2-5.jpg"
   },
   {
     id: "tablero-termicas",
@@ -95,7 +95,7 @@ export const PRODUCTOS = [
     precioFormateado: "$45.200",
     antes: "$52.000",
     oferta: "Pack",
-    imagen: ""
+    imagen: "img/productos/tablero-termicas.jpg"
   },
   {
     id: "tester-multimetro",
@@ -107,7 +107,7 @@ export const PRODUCTOS = [
     precioFormateado: "$16.800",
     antes: "$21.000",
     oferta: "-20%",
-    imagen: ""
+    imagen: "img/productos/tester-multimetro.jpg"
   },
   {
     id: "reflector-led-50w",
@@ -119,7 +119,7 @@ export const PRODUCTOS = [
     precioFormateado: "$19.500",
     antes: "$24.000",
     oferta: "Destacado",
-    imagen: ""
+    imagen: "img/productos/reflector-led-50w.jpg"
   },
 
   /* --- LIBROS / E-BOOK --- */
@@ -133,7 +133,7 @@ export const PRODUCTOS = [
     precioFormateado: "$6.900",
     antes: "$9.500",
     oferta: "-27%",
-    imagen: ""
+    imagen: "img/productos/ebook-electricidad.jpg"
   },
   {
     id: "ebook-plomeria",
@@ -145,7 +145,7 @@ export const PRODUCTOS = [
     precioFormateado: "$5.800",
     antes: "$8.000",
     oferta: "-27%",
-    imagen: ""
+    imagen: "img/productos/ebook-plomeria.jpg"
   },
   {
     id: "ebook-herreria",
@@ -157,7 +157,7 @@ export const PRODUCTOS = [
     precioFormateado: "$7.500",
     antes: "$10.000",
     oferta: "-25%",
-    imagen: ""
+    imagen: "img/productos/ebook-herreria.jpg"
   },
   {
     id: "ebook-durlock",
@@ -169,7 +169,7 @@ export const PRODUCTOS = [
     precioFormateado: "$8.200",
     antes: "$11.000",
     oferta: "-25%",
-    imagen: ""
+    imagen: "img/productos/ebook-durlock.jpg"
   },
 
   /* --- HERRAMIENTA SEGURIDAD --- */
@@ -183,7 +183,7 @@ export const PRODUCTOS = [
     precioFormateado: "$64.900",
     antes: "$81.100",
     oferta: "-20%",
-    imagen: ""
+    imagen: "img/productos/taladro-650w.jpg"
   },
   {
     id: "amoladora-4-1-2",
@@ -195,7 +195,7 @@ export const PRODUCTOS = [
     precioFormateado: "$58.900",
     antes: "$69.000",
     oferta: "Oferta",
-    imagen: ""
+    imagen: "img/productos/amoladora-4-1-2.jpg"
   },
   {
     id: "casco-seguridad",
@@ -207,7 +207,7 @@ export const PRODUCTOS = [
     precioFormateado: "$8.500",
     antes: "$11.000",
     oferta: "-22%",
-    imagen: ""
+    imagen: "img/productos/casco-seguridad.jpg"
   },
   {
     id: "antiparras-seguridad",
@@ -219,7 +219,7 @@ export const PRODUCTOS = [
     precioFormateado: "$4.200",
     antes: "$5.500",
     oferta: "-23%",
-    imagen: ""
+    imagen: "img/productos/antiparras-seguridad.jpg"
   },
   {
     id: "arnes-seguridad",
@@ -231,7 +231,7 @@ export const PRODUCTOS = [
     precioFormateado: "$34.500",
     antes: "$42.000",
     oferta: "Seguridad",
-    imagen: ""
+    imagen: "img/productos/arnes-seguridad.jpg"
   },
 
   /* --- MAYORISTA COMBOS --- */
@@ -245,7 +245,7 @@ export const PRODUCTOS = [
     precioFormateado: "$109.900",
     antes: "$135.000",
     oferta: "-19%",
-    imagen: ""
+    imagen: "img/productos/combo-duo-power.jpg"
   },
   {
     id: "combo-albanileria",
@@ -257,7 +257,7 @@ export const PRODUCTOS = [
     precioFormateado: "$78.000",
     antes: "$94.000",
     oferta: "Pack Obra",
-    imagen: ""
+    imagen: "img/productos/combo-albanileria.jpg"
   },
   {
     id: "pack-discos-corte",
@@ -269,7 +269,7 @@ export const PRODUCTOS = [
     precioFormateado: "$32.000",
     antes: "$41.000",
     oferta: "Mayorista",
-    imagen: ""
+    imagen: "img/productos/pack-discos-corte.jpg"
   },
   {
     id: "combo-electricista",
@@ -281,6 +281,6 @@ export const PRODUCTOS = [
     precioFormateado: "$49.900",
     antes: "$62.000",
     oferta: "-20%",
-    imagen: ""
+    imagen: "img/productos/combo-electricista.jpg"
   }
 ];

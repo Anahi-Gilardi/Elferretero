@@ -64,9 +64,9 @@ npx serve .
 Edita el archivo `js/data/config.js`:
 ```javascript
 export const CONFIG = {
-  whatsapp: "5493580000000",   // Código de país + código de área + número sin 0 ni 15
-  telefono: "0358 000-0000",
-  direccion: "Estado N° 1871, Río Cuarto, Córdoba",
+  whatsapp: "5493584238976",   // Código de país + código de área + número sin 0 ni 15
+  telefono: "358 423-8976",
+  direccion: "San Martín 2395, Río Cuarto, Córdoba",
   // ...
 };
 ```
