@@ -102,10 +102,12 @@ module.exports = async function handler(req, res) {
 
   // Mapear método de entrega
   let entregaTexto = "Retiro en local (San Martín 2395, Río Cuarto)";
-  if (entrega.includes("local") || entrega.includes("rio")) {
-    entregaTexto = "Envío a domicilio en Río Cuarto";
-  } else if (entrega.includes("nacional") || entrega.includes("pais")) {
+  if (entrega.includes("nacional") || entrega.includes("pais") || entrega.includes("país") || entrega.includes("interior")) {
     entregaTexto = "Envío al interior / resto del país";
+  } else if (entrega.includes("domicilio") || entrega.includes("cuarto") || entrega.includes("rio cuarto") || entrega.includes("río cuarto")) {
+    entregaTexto = "Envío a domicilio en Río Cuarto";
+  } else if (entrega.includes("retiro") || entrega.includes("local") || entrega.includes("sucursal")) {
+    entregaTexto = "Retiro en local (San Martín 2395, Río Cuarto)";
   }
 
   // Construir mensaje para WhatsApp

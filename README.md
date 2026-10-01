@@ -80,7 +80,6 @@ el-ferretero/
 ├── contacto.html                # Formulario de cotizaciones y mapa de San Martín 2395
 ├── electricidad.html            # Categoría: Cables IRAM, tableros y reflectores
 ├── herramienta-seguridad.html   # Categoría: Taladros, amoladoras y EPP
-├── libros-ebook.html            # Categoría: Manuales técnicos y guías prácticas
 ├── mantenimiento-limpieza.html  # Categoría: Hidrolavadoras, aspiradoras y escaleras
 ├── mayorista-combos.html        # Categoría: Kits de obra, electricista y cajas
 │

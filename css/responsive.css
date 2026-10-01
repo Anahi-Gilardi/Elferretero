@@ -84,6 +84,19 @@ header {
     --header-height: 60px;
   }
 
+  .top-utility-bar {
+    font-size: 0.74rem;
+    padding: 4px 0;
+  }
+
+  .utility-right {
+    display: none;
+  }
+
+  .utility-content {
+    justify-content: center;
+  }
+
   /* Header compacto con espacio lateral para que el logo no quede pegado al borde */
   .top-bar {
     height: var(--header-height);
@@ -116,21 +129,31 @@ header {
   }
 
   /* Botón hamburguesa visible y táctil */
+  /* Botón hamburguesa visible y táctil */
   .mobile-nav-toggle {
     display: flex;
     width: 42px;
     height: 42px;
-    background: rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(15, 23, 42, 0.04);
+    border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    color: #141414;
+    color: var(--ink);
     align-items: center;
     justify-content: center;
     touch-action: manipulation;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  :root[data-theme="dark"] .mobile-nav-toggle {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #F8FAFC;
   }
 
   .mobile-nav-toggle:active {
-    background: rgba(0, 0, 0, 0.25);
+    background: var(--orange-subtle);
+    border-color: var(--orange-border);
     transform: scale(0.95);
   }
 

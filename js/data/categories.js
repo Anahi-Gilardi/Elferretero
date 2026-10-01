@@ -22,15 +22,6 @@ export const CATEGORIAS = [
     aliases: ["electricidad", "iluminacion", "cables", "termicas", "electricas"]
   },
   {
-    id: "libros-ebook",
-    nombre: "Libros / E-Book",
-    nombreCorto: "Libros y Manuales",
-    slug: "libros-ebook.html",
-    desc: "Manuales técnicos paso a paso de electricidad, plomería, soldadura y durlock.",
-    icono: `<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
-    aliases: ["libros", "ebook", "ebooks", "manuales", "guias"]
-  },
-  {
     id: "herramienta-seguridad",
     nombre: "Herramienta Seguridad",
     nombreCorto: "Herramientas y Seguridad",
@@ -68,10 +59,6 @@ export const CATEGORY_ALIAS_MAP = {
   "manuales": "herramienta-seguridad",
   "construccion": "herramienta-seguridad",
   "epp": "herramienta-seguridad",
-  "libros": "libros-ebook",
-  "ebook": "libros-ebook",
-  "ebooks": "libros-ebook",
-  "libros-ebook": "libros-ebook",
   "mayorista": "mayorista-combos",
   "combos": "mayorista-combos",
   "packs": "mayorista-combos",

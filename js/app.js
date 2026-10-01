@@ -50,12 +50,21 @@
      2. GESTIÓN DEL CARRITO PERSISTENTE ENTRE PÁGINAS
      ========================================================================== */
   const CART_KEY = 'ferretero-cart';
+  const CART_META_KEY = 'ferretero-cart-meta';
   let cart = [];
+  let cartMeta = {
+    clientName: '',
+    delivery: 'Retiro en sucursal (San Martín 2395)',
+    address: ''
+  };
+  let lastFocusedElement = null;
 
   function initCart() {
     try {
       const saved = localStorage.getItem(CART_KEY);
       if (saved) cart = JSON.parse(saved);
+      const savedMeta = localStorage.getItem(CART_META_KEY);
+      if (savedMeta) cartMeta = Object.assign(cartMeta, JSON.parse(savedMeta));
     } catch (e) {
       cart = [];
     }
@@ -65,6 +74,46 @@
     const clearBtn = document.getElementById('clearCartBtn');
     const backdrop = document.getElementById('cartBackdrop');
     const checkoutBtn = document.getElementById('cartCheckoutWa');
+    const clientInput = document.getElementById('cartClientName');
+    const addressInput = document.getElementById('cartDeliveryAddress');
+    const deliveryRadios = document.querySelectorAll('input[name="cartDelivery"]');
+
+    // Restaurar datos guardados del comprador
+    if (clientInput && cartMeta.clientName) {
+      clientInput.value = cartMeta.clientName;
+    }
+    if (addressInput && cartMeta.address) {
+      addressInput.value = cartMeta.address;
+    }
+    if (deliveryRadios.length > 0 && cartMeta.delivery) {
+      deliveryRadios.forEach(radio => {
+        if (radio.value === cartMeta.delivery) {
+          radio.checked = true;
+        }
+      });
+    }
+
+    // Persistir cambios en datos del comprador
+    if (clientInput) {
+      clientInput.addEventListener('input', () => {
+        cartMeta.clientName = clientInput.value.trim();
+        saveCartMeta();
+      });
+    }
+    if (addressInput) {
+      addressInput.addEventListener('input', () => {
+        cartMeta.address = addressInput.value.trim();
+        saveCartMeta();
+      });
+    }
+    deliveryRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.checked) {
+          cartMeta.delivery = radio.value;
+          saveCartMeta();
+        }
+      });
+    });
 
     openButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -107,13 +156,23 @@
     renderCartDrawer();
   }
 
+  function saveCartMeta() {
+    try {
+      localStorage.setItem(CART_META_KEY, JSON.stringify(cartMeta));
+    } catch (e) {}
+  }
+
   function openCart() {
     const drawer = document.getElementById('cartDrawer');
     const backdrop = document.getElementById('cartBackdrop');
     if (drawer && backdrop) {
+      lastFocusedElement = document.activeElement;
       drawer.classList.add('open');
       backdrop.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      const closeBtn = document.getElementById('closeCartBtn');
+      if (closeBtn) closeBtn.focus();
     }
   }
 
@@ -123,7 +182,11 @@
     if (drawer && backdrop) {
       drawer.classList.remove('open');
       backdrop.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
+      }
     }
   }
 
@@ -194,6 +257,8 @@
     const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
     document.querySelectorAll('.cart-badge').forEach(b => {
       b.textContent = totalItems;
+      b.setAttribute('aria-label', `${totalItems} artículos en el pedido`);
+      b.setAttribute('aria-live', 'polite');
       b.style.display = totalItems > 0 ? 'flex' : 'none';
     });
   }
@@ -212,18 +277,22 @@
     if (cart.length === 0) {
       container.innerHTML = `
         <div class="cart-empty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
           <p>Tu lista de materiales y herramientas está vacía.</p>
-          <a class="btn btn-secondary btn-sm" href="productos.html" onclick="(${closeCart.toString()})()">Explorar catálogo</a>
+          <a class="btn btn-secondary btn-sm" href="productos.html" data-action="explore-catalog">Explorar catálogo</a>
         </div>
       `;
+      const exploreBtn = container.querySelector('[data-action="explore-catalog"]');
+      if (exploreBtn) exploreBtn.addEventListener('click', closeCart);
+
       if (totalEl) totalEl.textContent = '$0';
       if (checkoutBtn) {
         checkoutBtn.disabled = true;
+        checkoutBtn.setAttribute('aria-disabled', 'true');
         checkoutBtn.style.opacity = '0.5';
         checkoutBtn.style.pointerEvents = 'none';
       }
@@ -232,6 +301,7 @@
 
     if (checkoutBtn) {
       checkoutBtn.disabled = false;
+      checkoutBtn.removeAttribute('aria-disabled');
       checkoutBtn.style.opacity = '1';
       checkoutBtn.style.pointerEvents = 'auto';
     }
@@ -244,7 +314,7 @@
       return `
         <div class="cart-item" data-id="${item.id}">
           <div class="cart-item-img">
-            <img src="${imgSrc}" alt="${escapeHtml(item.nombre)}" onerror="this.src='${SVG_FALLBACK}'" loading="lazy">
+            <img src="${imgSrc}" alt="${escapeHtml(item.nombre)}" onerror="this.src='${SVG_FALLBACK}'" loading="lazy" width="60" height="60">
           </div>
           <div class="cart-item-info">
             <h4>${escapeHtml(item.nombre)}</h4>
@@ -252,11 +322,11 @@
           </div>
           <div class="cart-item-controls">
             <div class="quantity-control">
-              <button class="btn-qty" data-action="decrease" data-id="${item.id}" aria-label="Restar">−</button>
-              <span class="qty-val">${item.qty}</span>
-              <button class="btn-qty" data-action="increase" data-id="${item.id}" aria-label="Sumar">+</button>
+              <button class="btn-qty" data-action="decrease" data-id="${item.id}" aria-label="Restar una unidad de ${escapeHtml(item.nombre)}">−</button>
+              <span class="qty-val" aria-label="Cantidad: ${item.qty}">${item.qty}</span>
+              <button class="btn-qty" data-action="increase" data-id="${item.id}" aria-label="Sumar una unidad de ${escapeHtml(item.nombre)}">+</button>
             </div>
-            <button class="btn-remove-item" data-action="remove" data-id="${item.id}">Quitar</button>
+            <button class="btn-remove-item" data-action="remove" data-id="${item.id}" aria-label="Quitar ${escapeHtml(item.nombre)} del pedido">Quitar</button>
           </div>
         </div>
       `;
@@ -286,17 +356,34 @@
 
     // Opción de entrega seleccionada
     const deliveryRadio = document.querySelector('input[name="cartDelivery"]:checked');
-    const deliveryText = deliveryRadio ? deliveryRadio.value : 'Retiro en sucursal (San Martín 2395)';
+    const deliveryText = deliveryRadio ? deliveryRadio.value : (cartMeta.delivery || 'Retiro en sucursal (San Martín 2395)');
     const clientInput = document.getElementById('cartClientName');
-    const clientName = clientInput && clientInput.value.trim() ? clientInput.value.trim() : '';
+    const clientName = clientInput && clientInput.value.trim() ? clientInput.value.trim() : (cartMeta.clientName || '');
+    const addressInput = document.getElementById('cartDeliveryAddress');
+    const addressText = addressInput && addressInput.value.trim() ? addressInput.value.trim() : (cartMeta.address || '');
 
-    let clientSection = '';
+    let extraDetails = '';
     if (clientName) {
-      clientSection = `\n👤 *Cliente:* ${clientName}`;
+      extraDetails += `\n👤 *Cliente:* ${clientName}`;
+    }
+    if (addressText) {
+      extraDetails += `\n📍 *Dirección/Aclaraciones:* ${addressText}`;
     }
 
-    const msg = `*¡Hola El Ferretero!* 🛠️\nQuisiera consultar disponibilidad y coordinar el siguiente pedido:\n\n${itemsText}\n\n*Total estimado: $${total.toLocaleString('es-AR')}*\n📦 *Modalidad:* ${deliveryText}${clientSection}\n\n¿Tienen stock para confirmar? ¡Muchas gracias!`;
-    window.open(generarWaUrl(msg), '_blank', 'noopener,noreferrer');
+    const msg = `*¡Hola El Ferretero!* 🛠️\nQuisiera consultar disponibilidad y coordinar el siguiente pedido:\n\n${itemsText}\n\n*Total estimado: $${total.toLocaleString('es-AR')}*\n📦 *Modalidad:* ${deliveryText}${extraDetails}\n\n¿Tienen stock para confirmar? ¡Muchas gracias!`;
+    
+    abrirWhatsApp(msg);
+  }
+
+  function abrirWhatsApp(mensaje) {
+    const url = generarWaUrl(mensaje);
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(() => link.remove(), 120);
   }
 
   function showToast(message) {
@@ -305,6 +392,8 @@
       toast = document.createElement('div');
       toast.id = 'ferreteroToast';
       toast.className = 'toast';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
       document.body.appendChild(toast);
     }
     toast.textContent = message;
@@ -487,11 +576,6 @@
     "manuales": "herramienta-seguridad",
     "construccion": "herramienta-seguridad",
     "epp": "herramienta-seguridad",
-    "libros": "libros-ebook",
-    "libro": "libros-ebook",
-    "ebook": "libros-ebook",
-    "ebooks": "libros-ebook",
-    "libros-ebook": "libros-ebook",
     "mayorista": "mayorista-combos",
     "combos": "mayorista-combos",
     "combo": "mayorista-combos",
@@ -504,7 +588,6 @@
     "todos": "todas las categorías",
     "mantenimiento-limpieza": "Mantenimiento y Limpieza",
     "electricidad": "Electricidad",
-    "libros-ebook": "Libros / E-Book",
     "herramienta-seguridad": "Herramienta Seguridad",
     "mayorista-combos": "Mayorista Combos"
   };
