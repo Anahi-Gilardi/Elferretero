@@ -686,6 +686,8 @@ section {
   color: var(--ink);
   outline: none;
   box-shadow: none !important;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* Chips de Categoría */

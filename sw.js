@@ -4,7 +4,7 @@
  * y experiencia PWA móvil de alta velocidad.
  */
 
-const CACHE_NAME = 'el-ferretero-v2.1';
+const CACHE_NAME = 'el-ferretero-v2.2';
 const STATIC_ASSETS = [
   './',
   './index.html',

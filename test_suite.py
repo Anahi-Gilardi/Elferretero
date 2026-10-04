@@ -219,7 +219,7 @@ check("sw.js existe", os.path.isfile(sw_path))
 if os.path.isfile(sw_path):
     with open(sw_path, "r", encoding="utf-8") as f:
         sw_code = f.read()
-        check("sw.js es version v2.1", "el-ferretero-v2.1" in sw_code)
+        check("sw.js es version v2.2", "el-ferretero-v2.2" in sw_code)
         check("sw.js gestiona evento fetch", "addEventListener('fetch'" in sw_code)
         check("sw.js gestiona navegacion sin ERR_FAILED", "navigate" in sw_code)
 
@@ -341,6 +341,50 @@ try:
     with urllib.request.urlopen(req_quote_interior) as resp:
         q_int_data = json.loads(resp.read().decode("utf-8"))
         check("POST /api/quote mapea correctamente Envio al interior", "interior" in q_int_data.get("modalidadEntrega", ""))
+
+    # [QA] Pruebas negativas y de seguridad (regresión de la auditoría QA)
+    def http_status(method, path, body=None):
+        data = body if isinstance(body, (bytes, type(None))) else json.dumps(body).encode("utf-8")
+        req = urllib.request.Request(f"{BASE_URL}{path}", data=data, method=method,
+                                     headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req) as r:
+                return r.status, r.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as e:
+            return e.code, e.read().decode("utf-8", "replace")
+
+    st, body = http_status("POST", "/api/quote", {"items": [{"id": "hidrolavadora-1400w", "cantidad": 2, "precio": 1}]})
+    check("[QA] POST /api/quote usa precio del servidor para id de catalogo (2 x $92.500)", st == 200 and json.loads(body).get("total") == 185000)
+    invalid_payloads = [
+        ("cantidad negativa", {"items": [{"nombre": "X", "cantidad": -3, "precio": 100}]}),
+        ("cantidad no numerica", {"items": [{"nombre": "X", "cantidad": "abc", "precio": 100}]}),
+        ("cantidad > 999", {"items": [{"nombre": "X", "cantidad": 5000, "precio": 100}]}),
+        ("precio negativo", {"items": [{"nombre": "X", "cantidad": 1, "precio": -100}]}),
+        ("items no es lista", {"items": {"a": 1}}),
+        ("item nulo", {"items": [None]}),
+        ("id inexistente", {"items": [{"id": "no-existe", "cantidad": 1}]}),
+        ("pedido vacio", {"items": []}),
+    ]
+    for label, payload in invalid_payloads:
+        st, _ = http_status("POST", "/api/quote", payload)
+        check(f"[QA] POST /api/quote rechaza {label} (400)", st == 400, f"(HTTP {st})")
+    st, _ = http_status("POST", "/api/quote", {"cliente": 12345, "items": [{"nombre": "X", "cantidad": 1, "precio": 10}]})
+    check("[QA] POST /api/quote con cliente numerico no rompe el servidor", st in (200, 400), f"(HTTP {st})")
+    st, _ = http_status("POST", "/api/quote", b"{json roto")
+    check("[QA] POST /api/quote con JSON invalido responde 400", st == 400, f"(HTTP {st})")
+    st, _ = http_status("POST", "/api/quote", b'{"notas":"' + b"a" * 100000 + b'"}')
+    check("[QA] POST /api/quote rechaza payload > 64KB (413)", st == 413, f"(HTTP {st})")
+    st, _ = http_status("DELETE", "/api/quote")
+    check("[QA] DELETE /api/quote responde 405", st == 405, f"(HTTP {st})")
+    st, _ = http_status("POST", "/api/products", {})
+    check("[QA] POST /api/products responde 405", st == 405, f"(HTTP {st})")
+    st, body = http_status("GET", "/api/products?q=termica")
+    check("[QA] GET /api/products?q=termica encuentra productos sin tilde", st == 200 and json.loads(body).get("total", 0) >= 1)
+    st, _ = http_status("GET", "/api/health")
+    check("[QA] Servidor sigue vivo tras pruebas negativas", st == 200)
+    for secret in ["/.git/config", "/.vercel/project.json", "/server.js", "/package.json", "/test_suite.py", "/scripts/catalog_data.py", "/api/quote.js", "/..%2f..%2fWindows/win.ini"]:
+        st, _ = http_status("GET", secret)
+        check(f"[QA] Archivo interno {secret} no se publica", st in (400, 403, 404), f"(HTTP {st})")
 
 except Exception as err:
     check("Comunicacion HTTP con servidor local", False, str(err))

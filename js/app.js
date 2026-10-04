@@ -62,12 +62,18 @@
   function initCart() {
     try {
       const saved = localStorage.getItem(CART_KEY);
-      if (saved) cart = JSON.parse(saved);
-      const savedMeta = localStorage.getItem(CART_META_KEY);
-      if (savedMeta) cartMeta = Object.assign(cartMeta, JSON.parse(savedMeta));
+      if (saved) cart = sanitizeCart(JSON.parse(saved));
     } catch (e) {
       cart = [];
     }
+    try {
+      const savedMeta = JSON.parse(localStorage.getItem(CART_META_KEY) || 'null');
+      if (savedMeta && typeof savedMeta === 'object') {
+        ['clientName', 'delivery', 'address'].forEach(k => {
+          if (typeof savedMeta[k] === 'string') cartMeta[k] = savedMeta[k].slice(0, 200);
+        });
+      }
+    } catch (e) { /* metadatos corruptos: se usan valores por defecto */ }
 
     const openButtons = document.querySelectorAll('[data-open-cart]');
     const closeBtn = document.getElementById('closeCartBtn');
@@ -195,9 +201,39 @@
     return drawer && drawer.classList.contains('open');
   }
 
+  const MAX_QTY = 999; // mismo límite que valida /api/quote
+
+  // Descarta ítems inválidos de un carrito guardado (localStorage editado o corrupto)
+  function sanitizeCart(data) {
+    if (!Array.isArray(data)) return [];
+    const seen = new Set();
+    const clean = [];
+    data.forEach(item => {
+      if (!item || typeof item !== 'object') return;
+      const id = typeof item.id === 'string' ? item.id.trim() : '';
+      const precio = Number(item.precio);
+      const qty = Math.min(MAX_QTY, Math.floor(Number(item.qty)));
+      if (!/^[\w-]{1,80}$/.test(id) || seen.has(id) || !Number.isFinite(precio) || precio < 0 || !(qty >= 1)) return;
+      seen.add(id);
+      clean.push({
+        id,
+        nombre: String(item.nombre || 'Producto').slice(0, 150),
+        precio,
+        precioFormateado: String(item.precioFormateado || ''),
+        imagen: (typeof item.imagen === 'string' && /^img\/[\w\/.-]+$/.test(item.imagen)) ? item.imagen : `img/productos/${id}.jpg`,
+        qty
+      });
+    });
+    return clean;
+  }
+
   function addToCart(product) {
     const existing = cart.find(item => item.id === product.id);
     if (existing) {
+      if (existing.qty >= MAX_QTY) {
+        showToast(`Cantidad máxima por producto: ${MAX_QTY}.`);
+        return;
+      }
       existing.qty += 1;
       if (!existing.imagen && product.imagen) existing.imagen = product.imagen;
     } else {
@@ -220,7 +256,7 @@
   function updateQty(id, delta) {
     const item = cart.find(i => i.id === id);
     if (!item) return;
-    item.qty += delta;
+    item.qty = Math.min(MAX_QTY, item.qty + delta);
     if (item.qty <= 0) {
       cart = cart.filter(i => i.id !== id);
     }
@@ -441,12 +477,14 @@
     if (dropdown && dropdownToggle) {
       dropdownToggle.addEventListener('click', (e) => {
         e.preventDefault();
-        dropdown.classList.toggle('open');
+        const isOpen = dropdown.classList.toggle('open');
+        dropdownToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
 
       document.addEventListener('click', (e) => {
         if (!dropdown.contains(e.target)) {
           dropdown.classList.remove('open');
+          dropdownToggle.setAttribute('aria-expanded', 'false');
         }
       });
     }
@@ -605,16 +643,18 @@
 
     let activeCategory = 'todos';
 
-    // Leer parámetros de URL si existen (soporta ?categoria=electricidad o #herramientas)
+    // Leer parámetros de URL si existen (soporta ?categoria=electricidad o #herramientas).
+    // Solo se aceptan categorías conocidas: un ancla como #nuestro-local no debe vaciar la grilla.
     const urlParams = new URLSearchParams(window.location.search);
     const urlCat = urlParams.get('categoria') || urlParams.get('category') || urlParams.get('rubro') || window.location.hash.replace('#', '');
     if (urlCat) {
-      activeCategory = normalizeCategory(urlCat);
+      const normalized = normalizeCategory(urlCat);
+      if (CATEGORY_NAMES[normalized]) activeCategory = normalized;
     }
 
     const urlQ = urlParams.get('q') || urlParams.get('buscar');
     if (urlQ && input) {
-      input.value = urlQ;
+      input.value = urlQ.slice(0, 80);
     }
 
     // Crear contador dinámico si no existe
@@ -622,6 +662,8 @@
     if (!counterEl && input) {
       counterEl = document.createElement('div');
       counterEl.id = 'catalogCounter';
+      counterEl.setAttribute('role', 'status');
+      counterEl.setAttribute('aria-live', 'polite');
       counterEl.style.cssText = 'margin-bottom: 16px; font-weight: 600; color: var(--muted); font-size: 0.95rem;';
       grid.parentNode.insertBefore(counterEl, grid);
     }
@@ -635,7 +677,7 @@
       noResultsEl.style.display = 'none';
       noResultsEl.innerHTML = `
         <p>No se encontraron productos para tu selección o búsqueda.</p>
-        <button class="btn btn-secondary btn-sm" id="resetSearchBtn">Ver todos los productos</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="resetSearchBtn">Ver todos los productos</button>
       `;
       grid.parentNode.insertBefore(noResultsEl, grid.nextSibling);
     }
@@ -645,42 +687,40 @@
 
     // Vincular chips de categoría interactivos (si existen en la página)
     const chipContainer = document.querySelector('.category-chips');
-    const chips = chipContainer ? chipContainer.querySelectorAll('.chip') : [];
+    const chips = chipContainer ? chipContainer.querySelectorAll('.chip[data-category]') : [];
 
     function updateActiveChipUI() {
       chips.forEach(chip => {
-        const catAttr = chip.getAttribute('data-category') || '';
-        const chipCat = normalizeCategory(catAttr);
-        if (chipCat === activeCategory) {
-          chip.classList.add('active');
-        } else {
-          chip.classList.remove('active');
-        }
+        const chipCat = normalizeCategory(chip.getAttribute('data-category') || '');
+        const isActive = chipCat === activeCategory;
+        chip.classList.toggle('active', isActive);
+        if (isActive) chip.setAttribute('aria-current', 'true');
+        else chip.removeAttribute('aria-current');
       });
     }
 
     if (chips.length > 0) {
       chips.forEach(chip => {
         chip.addEventListener('click', (e) => {
-          // Filtrar en la misma página de catálogo si hay artículos
+          // Solo los chips de filtro (con data-category) filtran en la misma página.
+          // Los chips sin data-category son enlaces de navegación entre rubros.
+          if (!chip.hasAttribute('data-category')) return;
           const catAttr = chip.getAttribute('data-category') || '';
-          if (catAttr || document.getElementById('catalogSearch')) {
-            e.preventDefault();
-            activeCategory = normalizeCategory(catAttr);
-            updateActiveChipUI();
-            applyFilter();
+          e.preventDefault();
+          activeCategory = normalizeCategory(catAttr);
+          updateActiveChipUI();
+          applyFilter();
 
-            // Sincronizar URL sin recargar
-            try {
-              const url = new URL(window.location);
-              if (activeCategory === 'todos') {
-                url.searchParams.delete('categoria');
-              } else {
-                url.searchParams.set('categoria', activeCategory);
-              }
-              window.history.replaceState({}, '', url);
-            } catch (err) {}
-          }
+          // Sincronizar URL sin recargar
+          try {
+            const url = new URL(window.location);
+            if (activeCategory === 'todos') {
+              url.searchParams.delete('categoria');
+            } else {
+              url.searchParams.set('categoria', activeCategory);
+            }
+            window.history.replaceState({}, '', url);
+          } catch (err) {}
         });
       });
       updateActiveChipUI();
@@ -704,14 +744,15 @@
     }
 
     function applyFilter() {
-      const q = input ? input.value.toLowerCase().trim() : '';
+      const rawQ = input ? input.value.trim() : '';
+      const q = normalizeText(rawQ);
       let matchedCount = 0;
 
       articles.forEach(art => {
         const artCat = normalizeCategory(art.getAttribute('data-category') || '');
-        const title = art.querySelector('h3')?.textContent.toLowerCase() || '';
-        const desc = art.querySelector('.desc')?.textContent.toLowerCase() || '';
-        const tag = art.querySelector('.category-tag')?.textContent.toLowerCase() || '';
+        const title = normalizeText(art.querySelector('h3')?.textContent);
+        const desc = normalizeText(art.querySelector('.desc')?.textContent);
+        const tag = normalizeText(art.querySelector('.category-tag')?.textContent);
         const normTag = normalizeCategory(tag);
 
         const matchesCat = (activeCategory === 'todos') || (artCat === activeCategory) || (normTag === activeCategory);
@@ -728,9 +769,9 @@
       if (counterEl) {
         const catLabel = CATEGORY_NAMES[activeCategory] || activeCategory;
         if (q && activeCategory !== 'todos') {
-          counterEl.textContent = `Mostrando ${matchedCount} de ${totalCount} productos en ${catLabel} para "${q}"`;
+          counterEl.textContent = `Mostrando ${matchedCount} de ${totalCount} productos en ${catLabel} para "${rawQ}"`;
         } else if (q) {
-          counterEl.textContent = `Mostrando ${matchedCount} de ${totalCount} productos para "${q}"`;
+          counterEl.textContent = `Mostrando ${matchedCount} de ${totalCount} productos para "${rawQ}"`;
         } else if (activeCategory !== 'todos') {
           counterEl.textContent = `Mostrando ${matchedCount} productos en ${catLabel}`;
         } else {
@@ -756,9 +797,11 @@
     const el = document.getElementById('storeLiveStatus');
     if (!el) return;
 
+    // Hora del local (Argentina, UTC-3 sin horario de verano), independiente de la zona del visitante
     const now = new Date();
-    const day = now.getDay();
-    const timeDec = now.getHours() + (now.getMinutes() / 60);
+    const arg = new Date(now.getTime() + now.getTimezoneOffset() * 60000 - 3 * 3600000);
+    const day = arg.getDay();
+    const timeDec = arg.getHours() + (arg.getMinutes() / 60);
     const schedule = CONFIG.horariosApertura[day] || [];
 
     let isOpen = false;
@@ -825,6 +868,11 @@
     return String(str).replace(/[&<>"']/g, c => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     }[c]));
+  }
+
+  // Normaliza texto para búsquedas: minúsculas y sin acentos ("Térmica" -> "termica")
+  function normalizeText(value) {
+    return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
   }
 
   /* ==========================================================================

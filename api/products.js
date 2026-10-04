@@ -655,6 +655,15 @@ const PRODUCTOS = [
   }
 ];
 
+/** Minúsculas y sin tildes: "Térmicas" -> "termicas", "Caño" -> "cano" */
+function normalizeText(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
 module.exports = function handler(req, res) {
   // Configuración de encabezados HTTP & Edge Caching
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -668,11 +677,17 @@ module.exports = function handler(req, res) {
     return res.end();
   }
 
-  // Parsear URL y parámetros de consulta
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    res.statusCode = 405;
+    res.setHeader("Allow", "GET, OPTIONS");
+    return res.end(JSON.stringify({ ok: false, error: "Método no permitido" }));
+  }
+
+  // Parsear URL y parámetros de consulta (longitud acotada)
   const urlObj = new URL(req.url, `http://${req.headers.host || "localhost"}`);
-  const q = (urlObj.searchParams.get("q") || "").trim().toLowerCase();
-  const category = (urlObj.searchParams.get("category") || urlObj.searchParams.get("categoria") || "").trim().toLowerCase();
-  const id = (urlObj.searchParams.get("id") || "").trim().toLowerCase();
+  const q = normalizeText(urlObj.searchParams.get("q")).slice(0, 80);
+  const category = normalizeText(urlObj.searchParams.get("category") || urlObj.searchParams.get("categoria")).slice(0, 60);
+  const id = (urlObj.searchParams.get("id") || "").trim().toLowerCase().slice(0, 80);
 
   // Búsqueda por ID directo
   if (id) {
@@ -719,16 +734,16 @@ module.exports = function handler(req, res) {
   if (targetCategory) {
     results = results.filter(p => 
       p.categoriaId.toLowerCase() === targetCategory || 
-      p.categoriaNombre.toLowerCase().includes(category) ||
-      p.categoriaNombre.toLowerCase().includes(targetCategory)
+      normalizeText(p.categoriaNombre).includes(category) ||
+      normalizeText(p.categoriaNombre).includes(targetCategory)
     );
   }
 
   if (q) {
     results = results.filter(p => 
-      p.nombre.toLowerCase().includes(q) || 
-      p.desc.toLowerCase().includes(q) ||
-      p.categoriaNombre.toLowerCase().includes(q)
+      normalizeText(p.nombre).includes(q) || 
+      normalizeText(p.desc).includes(q) ||
+      normalizeText(p.categoriaNombre).includes(q)
     );
   }
 
@@ -744,3 +759,7 @@ module.exports = function handler(req, res) {
     productos: results
   }));
 };
+
+// Catálogo exportado para que /api/quote use precios del servidor (no los del cliente)
+module.exports.PRODUCTOS = PRODUCTOS;
+module.exports.normalizeText = normalizeText;

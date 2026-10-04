@@ -32,21 +32,75 @@ const MIME_TYPES = {
   ".ttf": "font/ttf"
 };
 
+// Archivos/carpetas internos que nunca deben servirse
+const BLOCKED_SEGMENTS = new Set(["node_modules", "scripts", "api"]);
+const BLOCKED_FILES = new Set(["server.js", "package.json", "package-lock.json", "test_suite.py", "abrir-web.bat", "readme.md"]);
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function isBlocked(relativePath) {
+  const segments = relativePath.split(/[\\/]+/).filter(Boolean);
+  if (segments.some(s => s.startsWith("."))) return true; // .git, .vercel, .env...
+  if (segments.length > 1 && BLOCKED_SEGMENTS.has(segments[0].toLowerCase())) return true;
+  return BLOCKED_FILES.has((segments[segments.length - 1] || "").toLowerCase());
+}
+
+function sendNotFound(res, pathname) {
+  res.statusCode = 404;
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.end(`<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="utf-8"><title>404 - No Encontrado | El Ferretero</title></head>
+<body style="font-family:sans-serif; text-align:center; padding:50px; background:#141414; color:#fff;">
+  <h1 style="color:#E07A2B;">404 - Página o recurso no encontrado</h1>
+  <p>El archivo <code>${escapeHtml(pathname)}</code> no existe en el servidor.</p>
+  <a href="/" style="color:#E07A2B; text-decoration:underline;">Volver al inicio</a>
+</body>
+</html>`);
+}
+
+async function runApi(handler, req, res) {
+  try {
+    await handler(req, res);
+  } catch (err) {
+    console.error("[server] Error en API:", err);
+    if (!res.headersSent) {
+      res.statusCode = 500;
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+    }
+    res.end(JSON.stringify({ ok: false, error: "Error interno del servidor" }));
+  }
+}
+
 const server = http.createServer(async (req, res) => {
-  const parsedUrl = new URL(req.url, `http://${req.headers.host || "localhost"}`);
-  let pathname = parsedUrl.pathname;
+  let parsedUrl;
+  try {
+    parsedUrl = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+  } catch {
+    res.statusCode = 400;
+    return res.end("400 Bad Request");
+  }
+  let pathname;
+  try {
+    pathname = decodeURIComponent(parsedUrl.pathname);
+  } catch {
+    res.statusCode = 400;
+    return res.end("400 Bad Request");
+  }
 
   // 1. Enrutamiento de la API REST
   if (pathname === "/api/products" || pathname === "/api/products.js") {
-    return productsHandler(req, res);
+    return runApi(productsHandler, req, res);
   }
 
   if (pathname === "/api/quote" || pathname === "/api/quote.js") {
-    return quoteHandler(req, res);
+    return runApi(quoteHandler, req, res);
   }
 
   if (pathname === "/api/health" || pathname === "/api/health.js") {
-    return healthHandler(req, res);
+    return runApi(healthHandler, req, res);
   }
 
   // 2. Enrutamiento de archivos estáticos
@@ -54,36 +108,27 @@ const server = http.createServer(async (req, res) => {
     pathname = "/index.html";
   }
 
-  let filePath = path.join(ROOT_DIR, pathname);
+  let filePath = path.resolve(ROOT_DIR, "." + pathname);
+
+  // Prevenir path traversal (comparación con separador para evitar prefijos falsos)
+  if (filePath !== ROOT_DIR && !filePath.startsWith(ROOT_DIR + path.sep)) {
+    res.statusCode = 403;
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    return res.end("403 Acceso Denegado");
+  }
 
   // Soporte para URLs limpias (ej: /productos -> /productos.html)
   if (!path.extname(filePath) && fs.existsSync(filePath + ".html")) {
     filePath = filePath + ".html";
   }
 
-  // Prevenir path traversal
-  if (!filePath.startsWith(ROOT_DIR)) {
-    res.statusCode = 403;
-    res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    return res.end("403 Acceso Denegado");
+  if (isBlocked(path.relative(ROOT_DIR, filePath))) {
+    return sendNotFound(res, pathname);
   }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      // 404 No encontrado
-      res.statusCode = 404;
-      res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.end(`
-        <!DOCTYPE html>
-        <html lang="es">
-        <head><meta charset="utf-8"><title>404 - No Encontrado | El Ferretero</title></head>
-        <body style="font-family:sans-serif; text-align:center; padding:50px; background:#141414; color:#fff;">
-          <h1 style="color:#F5A000;">404 - Página o recurso no encontrado</h1>
-          <p>El archivo <code>${pathname}</code> no existe en el servidor.</p>
-          <a href="/" style="color:#F5A000; text-decoration:underline;">Volver al inicio</a>
-        </body>
-        </html>
-      `);
+      return sendNotFound(res, pathname);
     }
 
     const ext = path.extname(filePath).toLowerCase();
@@ -91,6 +136,7 @@ const server = http.createServer(async (req, res) => {
 
     res.statusCode = 200;
     res.setHeader("Content-Type", contentType);
+    res.setHeader("X-Content-Type-Options", "nosniff");
 
     // Headers de caché según el tipo de archivo
     if (ext === ".jpg" || ext === ".png" || ext === ".webp" || ext === ".svg") {
@@ -100,6 +146,10 @@ const server = http.createServer(async (req, res) => {
     }
 
     const stream = fs.createReadStream(filePath);
+    stream.on("error", () => {
+      if (!res.headersSent) res.statusCode = 500;
+      res.end();
+    });
     stream.pipe(res);
   });
 });

@@ -95,6 +95,12 @@ module.exports = function handler(req, res) {
     return res.end();
   }
 
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    res.statusCode = 405;
+    res.setHeader("Allow", "GET, OPTIONS");
+    return res.end(JSON.stringify({ ok: false, error: "Método no permitido" }));
+  }
+
   const argDate = getArgentinaDateTime();
   const estadoSucursal = checkStoreOpen(argDate);
 
